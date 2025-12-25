@@ -13,9 +13,9 @@
 ---
 
 <h1 align="center">Hi 👋, I'm Dishant Shahare</h1>
-<h3 align="center">Flutter & AI-Focused Software Developer from India 🇮🇳</h3>
+<h3 align="center">Flutter & AI-Focused Software Developer </h3>
 
-<img src="https://media.giphy.com/media/K5kfQExKk731K/giphy.gif" width="300px" align="right" alt="coding">
+<img src="[https://media.giphy.com/media/K5kfQExKk731K/giphy.gif](https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExa25oZG41Z3FncTZxcXNuZm40bWxtcm1lczYyeHp3NDNreHd2ODNrZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/MD0svLSDeudszrNrp0/giphy.gif)" width="300px" align="right" alt="coding">
 
 ---
 
