@@ -13,74 +13,88 @@
 ---
 
 <h1 align="center">Hi 👋, I'm Dishant Shahare</h1>
-<h3 align="center">A passionate Flutter & AI-Focused Software Developer from India 🇮🇳</h3>
+<h3 align="center">Flutter & AI-Focused Software Developer from India 🇮🇳</h3>
 
-<img src="https://media.giphy.com/media/K5kfQExKk731K/giphy.gif" width="300px" align="right" alt="coding gif">
-
----
-
-### 👨‍💻 About Me
-
-- 🌱 Currently learning **Advanced Flutter, DSA, AI/ML & Generative AI**
-- 📱 Building **scalable Flutter applications** with real-world use cases
-- 🤖 Working on **AI-powered projects** like transcription, translation & sign-language systems
-- 🎨 Strong focus on **UI/UX + performance optimization**
-- ⚙️ Experience with **Full-Stack Development (Flutter + Backend + AI)**
-- 🧠 Interested in **Product-based development & startup-level solutions**
-- 📚 Check out my work: **[Projects & Repositories](https://github.com/DishantShahare358?tab=repositories)**
-- 💬 Ask me about **Flutter, Dart, Python, Supabase, AI/ML, REST APIs**
-- 📧 Reach me at: **your-email@example.com**
+<img src="https://media.giphy.com/media/K5kfQExKk731K/giphy.gif" width="300px" align="right" alt="coding">
 
 ---
 
-<h3 align="left">🤝 Connect with Me</h3>
-<p align="left">
-  <a href="https://github.com/DishantShahare358" target="_blank">
-    <img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/github.svg" height="30" width="40" />
+## 🧊 About Me (Glassmorphism Style)
+
+<div style="background:rgba(255,255,255,0.08);backdrop-filter:blur(12px);border-radius:16px;padding:16px">
+
+- 🌱 Learning **Advanced Flutter, AI/ML & DSA**
+- 📱 Building **real-world Flutter applications**
+- 🤖 Creating **AI-powered products**
+- 🎨 Focused on **UI/UX + performance**
+- ⚙️ Full-stack mindset (App + Backend + AI)
+- 📚 Projects: [View Repositories](https://github.com/DishantShahare358?tab=repositories)
+
+</div>
+
+---
+
+## 🏆 GitHub Achievements
+
+<p align="center">
+  🦈 Pull Shark &nbsp;&nbsp; 🚀 Quickdraw &nbsp;&nbsp; ⭐ Starstruck  
+  <br/>
+  🧠 Continuous Learner &nbsp;&nbsp; 🔥 Consistent Contributor
+</p>
+
+> *Achievements appear automatically when enabled in GitHub profile settings.*
+
+---
+
+## 🧰 Tech Stack
+
+<p align="center">
+  <img src="https://skillicons.dev/icons?i=flutter,dart,python,js,flask,firebase,supabase,postgres,git,github,vscode,linux" />
+</p>
+
+---
+
+## 🚀 Auto-Updating Featured Projects
+
+<!-- PROJECTS:START -->
+- 🌾 **Crop Bazar** – Digital marketplace for farmers  
+- 🎥 **AI Video Transcription System** – Multilingual subtitles & dubbing  
+- 🧏 **Sign Language Translator** – AI-powered 3D avatar  
+- 💬 **Realtime Chat App** – Flutter + Flask + WebSockets  
+<!-- PROJECTS:END -->
+
+---
+
+## 📊 GitHub Stats
+
+<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=DishantShahare358&show_icons=true&hide_border=true&bg_color=00000000&title_color=7C7CFF&icon_color=7C7CFF&text_color=C9D1D9" />
+</p>
+
+<p align="center">
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=DishantShahare358&hide_border=true&background=00000000&ring=7C7CFF&fire=FF9F43" />
+</p>
+
+---
+
+## 🐍 Contribution Snake
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/DishantShahare358/DishantShahare358/output/github-contribution-grid-snake.svg" />
+</p>
+
+---
+
+## 🌐 Connect With Me
+
+<p align="center">
+  <a href="https://github.com/DishantShahare358">
+    <img src="https://img.shields.io/badge/GitHub-7C7CFF?style=for-the-badge&logo=github&logoColor=white"/>
   </a>
-  <a href="https://www.linkedin.com/" target="_blank">
-    <img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" height="30" width="40" />
-  </a>
-  <a href="https://www.instagram.com/" target="_blank">
-    <img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/instagram.svg" height="30" width="40" />
-  </a>
-</p>
-
----
-
-<h3 align="left">🛠️ Languages & Tools</h3>
-
-<p align="left"> 
-  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/flutter/flutter-original.svg" alt="Flutter" width="40" height="40"/>
-  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/dart/dart-original.svg" alt="Dart" width="40" height="40"/>
-  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="Python" width="40" height="40"/>
-  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="JavaScript" width="40" height="40"/>
-  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/flask/flask-original.svg" alt="Flask" width="40" height="40"/>
-  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" width="40" height="40"/>
-  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/firebase/firebase-plain.svg" alt="Firebase" width="40" height="40"/>
-  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original.svg" alt="Git" width="40" height="40"/>
-</p>
-
----
-
-<h3 align="left">📊 GitHub Stats</h3>
-
-<p>
-  <img align="left" src="https://github-readme-stats.vercel.app/api/top-langs?username=DishantShahare358&show_icons=true&locale=en&layout=compact&hide_border=true" />
-</p>
-
-<p>
-  <img align="center" src="https://github-readme-stats.vercel.app/api?username=DishantShahare358&show_icons=true&locale=en&hide_border=true" />
-</p>
-
-<p>
-  <img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=DishantShahare358&hide_border=true" />
 </p>
 
 ---
 
 <p align="center">
-  <i>“Build things that matter. Learn continuously. Ship with confidence.” 🚀</i>
+  <i>"Build things that matter. Ship confidently. Learn endlessly."</i>
 </p>
-
-⭐ If you like my work, don’t forget to **star** my repositories!
