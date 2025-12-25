@@ -1,17 +1,17 @@
-<!-- ===================== -->
-<!-- 🎥 ANIMATED BANNER -->
-<!-- ===================== -->
+<!-- ================================================== -->
+<!-- 🌊 ANIMATED HERO BANNER -->
+<!-- ================================================== -->
 
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=7C7CFF&height=230&section=header&text=Dishant%20Shahare&fontSize=45&fontColor=ffffff&animation=fadeIn" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&height=260&color=gradient&text=Dishant%20Shahare&fontSize=48&fontColor=ffffff&animation=fadeIn" />
 </p>
 
-<!-- ===================== -->
-<!-- 🌌 MOVING TEXT (DO NOT TOUCH) -->
-<!-- ===================== -->
+<!-- ================================================== -->
+<!-- ✨ TYPING INTRO (DO NOT TOUCH) -->
+<!-- ================================================== -->
 
 <p align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&size=28&pause=1200&color=7C7CFF&center=true&vCenter=true&width=700&lines=Hi+👋+I'm+Dishant+Shahare;Flutter+Developer+📱;AI+%2F+ML+Explorer+🤖;Product+Focused+Engineer+🚀" />
+  <img src="https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&size=28&pause=1200&color=7C7CFF&center=true&vCenter=true&width=800&lines=Hi+👋+I'm+Dishant+Shahare;Flutter+Developer+📱;AI+%2F+ML+Explorer+🤖;Building+Modern+Digital+Products+🚀" />
 </p>
 
 <p align="center">
@@ -20,67 +20,71 @@
 
 ---
 
-<h1 align="center">Hi 👋, I'm Dishant Shahare</h1>
-<h3 align="center">Flutter & AI-Focused Software Developer from India 🇮🇳</h3>
+<h1 align="center">👋 Hello, I'm Dishant Shahare</h1>
+<h3 align="center">Flutter • AI • Product-Focused Software Engineer</h3>
 
-<img src="https://media.giphy.com/media/K5kfQExKk731K/giphy.gif" width="300px" align="right" />
+<img src="https://media.giphy.com/media/K5kfQExKk731K/giphy.gif" width="320px" align="right" alt="coding gif">
 
 ---
 
-## 🧊 About Me (Glassmorphism)
+## 🧊 About Me
 
-<div style="background:rgba(255,255,255,0.08);backdrop-filter:blur(14px);border-radius:18px;padding:18px">
+<div style="background:rgba(255,255,255,0.07);backdrop-filter:blur(18px);border-radius:20px;padding:20px;box-shadow:0 8px 32px rgba(0,0,0,0.2)">
 
-- 🌱 Learning **Advanced Flutter, AI/ML & DSA**
-- 📱 Building **production-ready Flutter apps**
-- 🤖 Creating **AI-powered real-world solutions**
-- 🎨 Strong focus on **UI/UX & performance**
-- 📚 Projects → [View Repositories](https://github.com/DishantShahare358?tab=repositories)
+🚀 Passionate about **building real-world applications**  
+📱 Specialized in **Flutter mobile development**  
+🤖 Integrating **AI & ML into practical products**  
+🎨 Strong focus on **clean UI, animations & UX**  
+⚙️ End-to-end mindset (App → Backend → AI)  
+📚 Always learning, shipping & improving  
 
 </div>
 
 ---
 
-## 🏆 Achievements
+## 🏆 Achievements & Highlights
 
 <p align="center">
-  🦈 Pull Shark &nbsp; 🚀 Quickdraw &nbsp; ⭐ Starstruck &nbsp; 🔥 Consistent Contributor
+  🦈 Pull Shark &nbsp;&nbsp; ⭐ Starstruck &nbsp;&nbsp; 🚀 Quickdraw  
+  <br/>
+  🔥 Consistent Contributor &nbsp;&nbsp; 🧠 Continuous Learner
 </p>
 
 ---
 
-## 🧰 Tech Stack
+## ⚡ Tech Stack
 
 <p align="center">
-  <img src="https://skillicons.dev/icons?i=flutter,dart,python,js,flask,firebase,supabase,postgres,git,github,vscode,linux" />
+  <img src="https://skillicons.dev/icons?i=flutter,dart,python,js,flask,firebase,supabase,postgres,git,github,vscode,linux&perline=6" />
 </p>
 
 ---
 
-## 🚀 Featured Projects (Auto Updating)
+## 🚀 Featured Projects (Auto-Updating)
+
+<div style="background:rgba(255,255,255,0.05);backdrop-filter:blur(16px);border-radius:18px;padding:16px">
 
 <!-- PROJECTS:START -->
-- 🌾 **Crop Bazar** – Digital agriculture marketplace  
-- 🎥 **AI Video Transcription & Translation**  
-- 🧏 **Sign Language Translator using 3D Avatar**  
-- 💬 **Realtime Chat App (Flutter + Flask)**  
+- 🌾 **Crop Bazar** — Digital marketplace for agriculture  
+- 🎥 **AI Video Transcription & Translation** — Multilingual subtitles & dubbing  
+- 🧏 **Sign Language Translator** — AI-powered 3D avatar system  
+- 💬 **Realtime Chat App** — Flutter + Flask + WebSockets  
 <!-- PROJECTS:END -->
+
+</div>
 
 ---
 
 ## 📊 GitHub Stats
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=DishantShahare358&show_icons=true&hide_border=true&bg_color=00000000&title_color=7C7CFF&icon_color=7C7CFF&text_color=C9D1D9" />
-</p>
-
-<p align="center">
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=DishantShahare358&hide_border=true&ring=7C7CFF&fire=FF9F43" />
+  <img width="48%" src="https://github-readme-stats.vercel.app/api?username=DishantShahare358&show_icons=true&hide_border=true&bg_color=00000000&title_color=7C7CFF&icon_color=7C7CFF&text_color=C9D1D9" />
+  <img width="48%" src="https://github-readme-streak-stats.herokuapp.com/?user=DishantShahare358&hide_border=true&background=00000000&ring=7C7CFF&fire=FF9F43" />
 </p>
 
 ---
 
-## 🐍 Contribution Snake Animation
+## 🐍 Contribution Snake (Live)
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/DishantShahare358/DishantShahare358/output/github-contribution-grid-snake.svg" />
@@ -88,6 +92,18 @@
 
 ---
 
+## 🌐 Connect With Me
+
 <p align="center">
-  <i>"Build things that matter. Learn continuously. Ship confidently."</i>
+  <a href="https://github.com/DishantShahare358">
+    <img src="https://img.shields.io/badge/GitHub-7C7CFF?style=for-the-badge&logo=github&logoColor=white"/>
+  </a>
 </p>
+
+---
+
+<p align="center">
+  <i>“Design with purpose. Build with passion. Ship with confidence.” ✨</i>
+</p>
+
+<p align="center">⭐ Star repositories you like — it motivates me!</p>
