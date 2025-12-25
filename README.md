@@ -11,7 +11,7 @@
 <!-- ================================================== -->
 
 <p align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&size=28&pause=1200&color=7C7CFF&center=true&vCenter=true&width=800&lines=Hi+👋+I'm+Dishant+Shahare;Flutter+Developer+📱;AI+%2F+ML+Explorer+🤖;Building+Modern+Digital+Products+🚀" />
+  <img src="https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&size=28&pause=1200&color=7C7CFF&center=true&vCenter=true&width=820&lines=Hi+👋+I'm+Dishant+Shahare;Flutter+Developer+📱;AI+%2F+ML+%26+GenAI+Explorer+🤖;Building+Modern+Digital+Products+🚀" />
 </p>
 
 <p align="center">
@@ -21,7 +21,7 @@
 ---
 
 <h1 align="center">👋 Hello, I'm Dishant Shahare</h1>
-<h3 align="center">Flutter • AI/ML • Product-Focused Software Engineer</h3>
+<h3 align="center">Flutter • React • AI/ML • GenAI | Product-Focused Software Engineer</h3>
 
 <img src="https://media.giphy.com/media/K5kfQExKk731K/giphy.gif" width="320px" align="right" alt="coding gif">
 
@@ -31,12 +31,13 @@
 
 <div style="background:rgba(255,255,255,0.07);backdrop-filter:blur(18px);border-radius:20px;padding:20px;box-shadow:0 8px 32px rgba(0,0,0,0.2)">
 
-🚀 Passionate about **building real-world applications**  
-📱 Specialized in **Flutter mobile development**  
-🤖 Currently learning **AI/ML Model Generator (Training → Saving → Deployment)**  
-🧠 Exploring **GenAI, Model Inference & APIs**  
-🎨 Focused on **clean UI, animations & UX**  
-⚙️ End-to-end mindset (App → Backend → AI)  
+🚀 Passionate about **building real-world, scalable products**  
+📱 Specialized in **Flutter & modern UI development**  
+⚛️ Experience with **React for web applications**  
+🤖 **Currently working on Generative AI (GenAI)**  
+🧠 Learning **AI/ML Model Generator (training → saving → deployment)**  
+🎨 Focused on **clean UI, animations & performance**  
+⚙️ End-to-end mindset (Frontend → Backend → AI)
 
 </div>
 
@@ -55,7 +56,7 @@
 ## ⚡ Tech Stack
 
 <p align="center">
-  <img src="https://skillicons.dev/icons?i=flutter,dart,python,js,flask,firebase,supabase,postgres,git,github,vscode&perline=6" />
+  <img src="https://skillicons.dev/icons?i=flutter,dart,react,js,python,flask,firebase,supabase,postgres,git,github,vscode&perline=6" />
 </p>
 
 ---
@@ -67,7 +68,8 @@
 <!-- PROJECTS:START -->
 - 🌾 **Crop Bazar** — Digital marketplace for agriculture  
 - 🎥 **AI Video Transcription & Translation** — Multilingual subtitles & dubbing  
-- 🧠 **AI/ML Model Generator** — Train, save & deploy models  
+- 🧠 **AI/ML Model Generator** — Train, save & deploy ML models  
+- 🤖 **GenAI Experiments** — Prompting, inference & API-based systems  
 - 🧏 **Sign Language Translator** — AI-powered 3D avatar system  
 - 💬 **Realtime Chat App** — Flutter + Flask + WebSockets  
 <!-- PROJECTS:END -->
@@ -79,8 +81,10 @@
 ## 📊 GitHub Stats
 
 <p align="center">
-  <img width="48%" src="https://github-readme-stats.vercel.app/api?username=DishantShahare358&show_icons=true&hide_border=true&bg_color=00000000&title_color=ffffff&icon_color=7C7CFF&text_color=ffffff" />
-  <img width="48%" src="https://github-readme-streak-stats.herokuapp.com/?user=DishantShahare358&hide_border=true&background=00000000&ring=7C7CFF&fire=FF9F43&currStreakLabel=ffffff&sideLabels=ffffff&dates=ffffff" />
+  <img width="48%" 
+       src="https://github-readme-stats.vercel.app/api?username=DishantShahare358&show_icons=true&hide_border=true&bg_color=00000000&title_color=ffffff&icon_color=7C7CFF&text_color=ffffff" />
+  <img width="48%" 
+       src="https://github-readme-streak-stats.herokuapp.com/?user=DishantShahare358&hide_border=true&background=00000000&ring=7C7CFF&fire=FF9F43&currStreakLabel=ffffff&sideLabels=ffffff&dates=ffffff" />
 </p>
 
 ---
@@ -98,6 +102,12 @@
 <p align="center">
   <a href="https://github.com/DishantShahare358">
     <img src="https://img.shields.io/badge/GitHub-7C7CFF?style=for-the-badge&logo=github&logoColor=white"/>
+  </a>
+  <a href="https://www.linkedin.com/" target="_blank">
+    <img src="https://img.shields.io/badge/LinkedIn-7C7CFF?style=for-the-badge&logo=linkedin&logoColor=white"/>
+  </a>
+  <a href="mailto:your-email@example.com">
+    <img src="https://img.shields.io/badge/Email-7C7CFF?style=for-the-badge&logo=gmail&logoColor=white"/>
   </a>
 </p>
 
