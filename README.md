@@ -21,7 +21,7 @@
 ---
 
 <h1 align="center">👋 Hello, I'm Dishant Shahare</h1>
-<h3 align="center">Flutter • AI • Product-Focused Software Engineer</h3>
+<h3 align="center">Flutter • AI/ML • Product-Focused Software Engineer</h3>
 
 <img src="https://media.giphy.com/media/K5kfQExKk731K/giphy.gif" width="320px" align="right" alt="coding gif">
 
@@ -33,10 +33,10 @@
 
 🚀 Passionate about **building real-world applications**  
 📱 Specialized in **Flutter mobile development**  
-🤖 Integrating **AI & ML into practical products**  
-🎨 Strong focus on **clean UI, animations & UX**  
+🤖 Currently learning **AI/ML Model Generator (Training → Saving → Deployment)**  
+🧠 Exploring **GenAI, Model Inference & APIs**  
+🎨 Focused on **clean UI, animations & UX**  
 ⚙️ End-to-end mindset (App → Backend → AI)  
-📚 Always learning, shipping & improving  
 
 </div>
 
@@ -55,7 +55,7 @@
 ## ⚡ Tech Stack
 
 <p align="center">
-  <img src="https://skillicons.dev/icons?i=flutter,dart,python,js,flask,firebase,supabase,postgres,git,github,vscode,linux&perline=6" />
+  <img src="https://skillicons.dev/icons?i=flutter,dart,python,js,flask,firebase,supabase,postgres,git,github,vscode&perline=6" />
 </p>
 
 ---
@@ -67,6 +67,7 @@
 <!-- PROJECTS:START -->
 - 🌾 **Crop Bazar** — Digital marketplace for agriculture  
 - 🎥 **AI Video Transcription & Translation** — Multilingual subtitles & dubbing  
+- 🧠 **AI/ML Model Generator** — Train, save & deploy models  
 - 🧏 **Sign Language Translator** — AI-powered 3D avatar system  
 - 💬 **Realtime Chat App** — Flutter + Flask + WebSockets  
 <!-- PROJECTS:END -->
@@ -78,8 +79,8 @@
 ## 📊 GitHub Stats
 
 <p align="center">
-  <img width="48%" src="https://github-readme-stats.vercel.app/api?username=DishantShahare358&show_icons=true&hide_border=true&bg_color=00000000&title_color=7C7CFF&icon_color=7C7CFF&text_color=C9D1D9" />
-  <img width="48%" src="https://github-readme-streak-stats.herokuapp.com/?user=DishantShahare358&hide_border=true&background=00000000&ring=7C7CFF&fire=FF9F43" />
+  <img width="48%" src="https://github-readme-stats.vercel.app/api?username=DishantShahare358&show_icons=true&hide_border=true&bg_color=00000000&title_color=ffffff&icon_color=7C7CFF&text_color=ffffff" />
+  <img width="48%" src="https://github-readme-streak-stats.herokuapp.com/?user=DishantShahare358&hide_border=true&background=00000000&ring=7C7CFF&fire=FF9F43&currStreakLabel=ffffff&sideLabels=ffffff&dates=ffffff" />
 </p>
 
 ---
@@ -103,7 +104,7 @@
 ---
 
 <p align="center">
-  <i>“Design with purpose. Build with passion. Ship with confidence.” ✨</i>
+  <i>“Design with purpose. Build with intelligence. Ship with confidence.” ✨</i>
 </p>
 
 <p align="center">⭐ Star repositories you like — it motivates me!</p>
