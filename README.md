@@ -18,7 +18,7 @@
   <img src="https://komarev.com/ghpvc/?username=DishantShahare358&label=Profile+Views&color=7C7CFF&style=flat-square" />
 </p>
 
----
+
 
 <h1 align="center">👋 Hello, I'm Dishant Shahare</h1>
 <h3 align="center">Flutter • React • AI/ML • GenAI | Product-Focused Software Engineer</h3>
@@ -79,7 +79,7 @@
 ---
 
 
-## 📊 GitHub Metrics
+## 🔥 GitHub Streak & Contributions
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/DishantShahare358/DishantShahare358/main/github-metrics.svg" />
