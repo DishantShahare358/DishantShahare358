@@ -1,15 +1,26 @@
 name: Update README Projects
 
 on:
+  workflow_dispatch:
   schedule:
     - cron: "0 */12 * * *"
-  workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
-  update:
+  update-projects:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
-      - uses: gautamkrishnar/blog-post-workflow@master
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Update README with latest repositories
+        uses: jamesgeorge007/github-activity-readme@v0.4.5
         with:
-          feed_list: "https://github.com/DishantShahare358.atom"
+          GITHUB_USERNAME: DishantShahare358
+          COMMIT_MSG: "chore: update featured projects"
+          MAX_LINES: 6
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
