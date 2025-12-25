@@ -80,15 +80,10 @@
 
 ## 📊 GitHub Stats
 
+## 📊 GitHub Metrics (Live & Stable)
+
 <p align="center">
-  <img 
-    src="https://github-readme-stats.vercel.app/api?username=DishantShahare358&show_icons=true&theme=transparent&title_color=ffffff&text_color=ffffff&icon_color=7C7CFF&hide_border=true" 
-    height="170"
-  />
-  <img 
-    src="https://github-readme-streak-stats.herokuapp.com?user=DishantShahare358&theme=transparent&hide_border=true&ring=7C7CFF&fire=FF9F43&currStreakLabel=ffffff&sideLabels=ffffff&dates=ffffff" 
-    height="170"
-  />
+  <img src="https://raw.githubusercontent.com/DishantShahare358/DishantShahare358/main/github-metrics.svg" />
 </p>
 ---
 
