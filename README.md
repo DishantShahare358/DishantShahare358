@@ -81,12 +81,15 @@
 ## 📊 GitHub Stats
 
 <p align="center">
-  <img width="48%" 
-       src="https://github-readme-stats.vercel.app/api?username=DishantShahare358&show_icons=true&hide_border=true&bg_color=00000000&title_color=ffffff&icon_color=7C7CFF&text_color=ffffff" />
-  <img width="48%" 
-       src="https://github-readme-streak-stats.herokuapp.com/?user=DishantShahare358&hide_border=true&background=00000000&ring=7C7CFF&fire=FF9F43&currStreakLabel=ffffff&sideLabels=ffffff&dates=ffffff" />
+  <img 
+    src="https://github-readme-stats.vercel.app/api?username=DishantShahare358&show_icons=true&theme=transparent&title_color=ffffff&text_color=ffffff&icon_color=7C7CFF&hide_border=true" 
+    height="170"
+  />
+  <img 
+    src="https://github-readme-streak-stats.herokuapp.com?user=DishantShahare358&theme=transparent&hide_border=true&ring=7C7CFF&fire=FF9F43&currStreakLabel=ffffff&sideLabels=ffffff&dates=ffffff" 
+    height="170"
+  />
 </p>
-
 ---
 
 ## 🐍 Contribution Snake (Live)
