@@ -78,7 +78,6 @@
 
 ---
 
-## 📊 GitHub Stats
 
 ## 📊 GitHub Metrics (Live & Stable)
 
