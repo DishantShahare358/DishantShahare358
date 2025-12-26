@@ -18,17 +18,34 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           user: DishantShahare358
 
-          # ===== Base =====
-          base: header
+          # =========================
+          # BASE (CLEAN & FOCUSED)
+          # =========================
+          base: header, repositories
 
-          # ===== Streak / Contributions Bar =====
+          # =========================
+          # CONTRIBUTION / STREAK VIEW
+          # =========================
           plugin_isocalendar: yes
           plugin_isocalendar_duration: half-year
 
-          # ===== Activity Summary =====
+          # =========================
+          # ACTIVITY (LIGHT & SAFE)
+          # =========================
           plugin_activity: yes
-          plugin_activity_limit: 5
+          plugin_activity_limit: 3
 
-          # ===== Appearance =====
+          # =========================
+          # VISUAL STYLE
+          # =========================
           theme: dark
           config_timezone: Asia/Kolkata
+          config_display: large
+          config_padding: 8%
+
+          # =========================
+          # DISABLED (TO AVOID ERRORS)
+          # =========================
+          plugin_habits: no
+          plugin_achievements: no
+          plugin_languages: no
