@@ -43,17 +43,7 @@
 
 </div>
 
----
 
-## 🏆 Achievements & Highlights
-
-<p align="center">
-  🦈 Pull Shark &nbsp;&nbsp; ⭐ Starstruck &nbsp;&nbsp; 🚀 Quickdraw  
-  <br/>
-  🔥 Consistent Contributor &nbsp;&nbsp; 🧠 Continuous Learner
-</p>
-
----
 
 ## ⚡ Tech Stack
 
