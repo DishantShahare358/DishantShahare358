@@ -77,6 +77,14 @@
  <img src="https://raw.githubusercontent.com/DishantShahare358/DishantShahare358/main/github-metrics.svg" />
 </p> 
 
+
+<p align="center">
+  <img 
+    src="https://github-readme-streak-stats.herokuapp.com?user=DishantShahare358&theme=default&hide_border=true&ring=7C7CFF&fire=FFA500&currStreakLabel=FFA500"
+    alt="GitHub Streak Stats"
+  />
+</p>
+
 ---
 
 ## 🐍 Contribution Snake (Live)
