@@ -47,5 +47,5 @@ jobs:
           # DISABLED (TO AVOID ERRORS)
           # =========================
           plugin_habits: no
-          plugin_achievements: no
+          plugin_achievements: yes
           plugin_languages: no
