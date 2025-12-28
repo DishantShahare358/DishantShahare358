@@ -79,11 +79,12 @@
 
 
 <p align="center">
-  <img 
-    src="https://github-readme-streak-stats.herokuapp.com?user=DishantShahare358&theme=default&hide_border=true&ring=7C7CFF&fire=FFA500&currStreakLabel=FFA500"
+  <img
+    src="https://streak-stats.demolab.com?user=DishantShahare358&theme=default&hide_border=true&ring=7C7CFF&fire=FFA500&currStreakLabel=FFA500"
     alt="GitHub Streak Stats"
   />
 </p>
+
 
 ---
 
