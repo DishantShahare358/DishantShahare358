@@ -73,9 +73,9 @@
 
 ## 🔥 GitHub Contribution & Streaks
 
-<p align="center">
+<!-- <p align="center">
   <img src="https://raw.githubusercontent.com/DishantShahare358/DishantShahare358/main/github-metrics.svg" />
-</p>
+</p> -->
 
 ---
 
