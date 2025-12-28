@@ -79,9 +79,7 @@
 
 
 <p align="center">
-  <img
-    src="https://streak-stats.demolab.com?user=DishantShahare358&theme=dark&hide_border=true&ring=7C7CFF&fire=FFA500&currStreakLabel=FFA500"
-  />
+  <img src="https://github-readme-stats.vercel.app/api?username=DishantShahare358&show_icons=true&theme=default" />
 </p>
 
 
