@@ -77,9 +77,11 @@
  <img src="https://raw.githubusercontent.com/DishantShahare358/DishantShahare358/main/github-metrics.svg" />
 </p> 
 
-
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=DishantShahare358&show_icons=true&theme=default" />
+  <img
+    src="https://streak-stats.demolab.com?user=DishantShahare358&theme=default&hide_border=true&ring=7C7CFF&fire=FFA500&currStreakLabel=FFA500"
+    alt="GitHub Streak Stats"
+  />
 </p>
 
 
