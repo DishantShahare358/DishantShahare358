@@ -3,7 +3,7 @@ name: GitHub Metrics
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 0 * * *"
+    - cron: "0 0 * * *" # daily update
 
 permissions:
   contents: write
@@ -11,6 +11,7 @@ permissions:
 jobs:
   metrics:
     runs-on: ubuntu-latest
+
     steps:
       - name: Generate GitHub Metrics
         uses: lowlighter/metrics@latest
@@ -19,33 +20,37 @@ jobs:
           user: DishantShahare358
 
           # =========================
-          # BASE (CLEAN & FOCUSED)
+          # 🧭 BASE SECTIONS
           # =========================
           base: header, repositories
 
           # =========================
-          # CONTRIBUTION / STREAK VIEW
+          # 📅 CONTRIBUTION CALENDAR
           # =========================
           plugin_isocalendar: yes
           plugin_isocalendar_duration: half-year
 
           # =========================
-          # ACTIVITY (LIGHT & SAFE)
+          # ⚡ RECENT ACTIVITY
           # =========================
           plugin_activity: yes
-          plugin_activity_limit: 3
+          plugin_activity_limit: 5
+          plugin_activity_days: 14
 
           # =========================
-          # VISUAL STYLE
+          # 🎨 VISUAL STYLE
           # =========================
           theme: dark
           config_timezone: Asia/Kolkata
           config_display: large
           config_padding: 8%
+          config_animated: true
 
           # =========================
-          # DISABLED (TO AVOID ERRORS)
+          # 🧹 KEEP IT CLEAN (SAFE)
           # =========================
           plugin_habits: no
-          plugin_achievements: yes
           plugin_languages: no
+          plugin_achievements: yes
+          plugin_achievements_display: compact
+          plugin_achievements_threshold: C
