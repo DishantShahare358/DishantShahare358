@@ -80,10 +80,6 @@
   />
 </p>
 
- <p align="center">
- <img src="https://raw.githubusercontent.com/DishantShahare358/DishantShahare358/main/github-metrics.svg" />
-</p> 
-
 
 ---
 
@@ -110,6 +106,10 @@
 </p>
 
 ---
+
+ <p align="center">
+ <img src="https://raw.githubusercontent.com/DishantShahare358/DishantShahare358/main/github-metrics.svg" />
+</p> 
 
 <p align="center">
   <i>“Design with purpose. Build with intelligence. Ship with confidence.” ✨</i>
