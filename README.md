@@ -80,8 +80,7 @@
 
 <p align="center">
   <img
-    src="https://streak-stats.demolab.com?user=DishantShahare358&theme=default&hide_border=true&ring=7C7CFF&fire=FFA500&currStreakLabel=FFA500"
-    alt="GitHub Streak Stats"
+    src="https://streak-stats.demolab.com?user=DishantShahare358&theme=dark&hide_border=true&ring=7C7CFF&fire=FFA500&currStreakLabel=FFA500"
   />
 </p>
 
