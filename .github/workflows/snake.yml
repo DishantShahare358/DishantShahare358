@@ -1,8 +1,8 @@
-name: Generate Snake Animation
+name: 🐍 Generate Themed Snake Animation
 
 on:
   schedule:
-    - cron: "0 */24 * * *"
+    - cron: "0 0 * * *"
   workflow_dispatch:
   push:
     branches:
@@ -13,18 +13,166 @@ jobs:
     permissions:
       contents: write
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
 
     steps:
-      - name: generate github-contribution-grid-snake.svg
+      # ─── Step 1: Generate base SVGs with theme colors ─────────────────────────
+      - name: 🎨 Generate contribution snake with theme colors
         uses: Platane/snk/svg-only@v3
         with:
           github_user_name: ${{ github.repository_owner }}
           outputs: |
-            dist/github-snake.svg
-            dist/github-snake-dark.svg?palette=github-dark
+            dist/github-snake.svg?color_snake=00d4ff&color_dots[]=ebedf0&color_dots[]=9be9a8&color_dots[]=40c463&color_dots[]=30a14e&color_dots[]=216e39&color_empty=ebedf0
+            dist/github-snake-dark.svg?color_snake=00d4ff&color_dots[]=0d1117&color_dots[]=1a2040&color_dots[]=2e3a6e&color_dots[]=4a50a0&color_dots[]=6c63ff&color_empty=161b22
 
-      - name: push github-contribution-grid-snake.svg to the output branch
+      # ─── Step 2: Inject neon glow + unique themed styling ─────────────────────
+      - name: ✨ Inject neon glow and themed design into SVGs
+        run: |
+          python3 << 'PYEOF'
+          import re, os
+
+          # ── Shared SVG injection pieces ─────────────────────────────────────
+          GLOW_DEFS = """
+            <defs>
+              <!-- Neon cyan glow for the snake body -->
+              <filter id="snake-glow" x="-60%" y="-60%" width="220%" height="220%" color-interpolation-filters="sRGB">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="2.5" result="blur1"/>
+                <feGaussianBlur in="SourceGraphic" stdDeviation="5"   result="blur2"/>
+                <feColorMatrix in="blur1" type="matrix"
+                  values="0 0 0 0 0
+                          0 0.83 0 0 0.83
+                          0 0 1 0 1
+                          0 0 0 2.5 0" result="cBlur1"/>
+                <feColorMatrix in="blur2" type="matrix"
+                  values="0 0 0 0 0
+                          0 0.83 0 0 0.83
+                          0 0 1 0 1
+                          0 0 0 1.5 0" result="cBlur2"/>
+                <feMerge>
+                  <feMergeNode in="cBlur2"/>
+                  <feMergeNode in="cBlur1"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
+
+              <!-- Subtle purple glow for high-contribution dots -->
+              <filter id="dot-glow" x="-80%" y="-80%" width="260%" height="260%" color-interpolation-filters="sRGB">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="1.8" result="blur"/>
+                <feColorMatrix in="blur" type="matrix"
+                  values="0.42 0 0 0 0.27
+                          0 0.39 0 0 0.25
+                          0 0 1 0 1
+                          0 0 0 2 0" result="cBlur"/>
+                <feMerge>
+                  <feMergeNode in="cBlur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
+
+              <!-- Animated gradient border -->
+              <linearGradient id="borderGrad" x1="0%" y1="0%" x2="100%" y2="100%"
+                              gradientUnits="userSpaceOnUse">
+                <stop offset="0%"   stop-color="#00d4ff"/>
+                <stop offset="50%"  stop-color="#6c63ff"/>
+                <stop offset="100%" stop-color="#00bcd4"/>
+                <animateTransform attributeName="gradientTransform" type="rotate"
+                  values="0 0.5 0.5;360 0.5 0.5" dur="4s" repeatCount="indefinite"/>
+              </linearGradient>
+
+              <!-- Scanline texture for retro-cyber feel -->
+              <pattern id="scanlines" x="0" y="0" width="100%" height="4"
+                       patternUnits="userSpaceOnUse">
+                <rect x="0" y="0" width="100%" height="1" fill="rgba(0,212,255,0.04)"/>
+              </pattern>
+            </defs>"""
+
+          def style_dark(svg):
+              w = re.search(r'width="(\d+)"',  svg)
+              h = re.search(r'height="(\d+)"', svg)
+              W = w.group(1) if w else "800"
+              H = h.group(1) if h else "200"
+
+              dark_style = f"""
+            <style>
+              svg {{ overflow: visible; }}
+              /* ── Neon glow on the snake (cyan fill elements) ── */
+              [fill="#00d4ff"], [fill="#00D4FF"] {{
+                filter: url(#snake-glow);
+              }}
+              /* ── Purple glow on max-contribution dots ── */
+              [fill="#6c63ff"], [fill="#6C63FF"], [fill="#4a50a0"] {{
+                filter: url(#dot-glow);
+              }}
+            </style>
+            <!-- Dark bg fill -->
+            <rect x="0" y="0" width="{W}" height="{H}" rx="12" ry="12" fill="#0d1117"/>
+            <!-- Scanline overlay -->
+            <rect x="0" y="0" width="{W}" height="{H}" rx="12" ry="12"
+                  fill="url(#scanlines)" opacity="0.6"/>
+            <!-- Animated gradient border frame -->
+            <rect x="1" y="1" width="{int(W)-2}" height="{int(H)-2}"
+                  rx="11" ry="11"
+                  fill="none" stroke="url(#borderGrad)" stroke-width="2" opacity="0.9"/>
+            <!-- Corner accent dots -->
+            <circle cx="10" cy="10" r="3" fill="#00d4ff" opacity="0.8">
+              <animate attributeName="opacity" values="0.8;0.2;0.8" dur="2s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="{int(W)-10}" cy="10" r="3" fill="#6c63ff" opacity="0.8">
+              <animate attributeName="opacity" values="0.2;0.8;0.2" dur="2s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="10" cy="{int(H)-10}" r="3" fill="#6c63ff" opacity="0.8">
+              <animate attributeName="opacity" values="0.8;0.2;0.8" dur="2.5s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="{int(W)-10}" cy="{int(H)-10}" r="3" fill="#00d4ff" opacity="0.8">
+              <animate attributeName="opacity" values="0.2;0.8;0.2" dur="2.5s" repeatCount="indefinite"/>
+            </circle>"""
+              return dark_style
+
+          def style_light(svg):
+              w = re.search(r'width="(\d+)"',  svg)
+              h = re.search(r'height="(\d+)"', svg)
+              W = w.group(1) if w else "800"
+              H = h.group(1) if h else "200"
+
+              light_style = f"""
+            <style>
+              svg {{ overflow: visible; }}
+              [fill="#00d4ff"], [fill="#00D4FF"] {{
+                filter: drop-shadow(0 0 4px rgba(0,212,255,0.7));
+              }}
+            </style>
+            <rect x="0" y="0" width="{W}" height="{H}" rx="12" ry="12" fill="#f0f6ff"/>
+            <rect x="1" y="1" width="{int(W)-2}" height="{int(H)-2}"
+                  rx="11" ry="11"
+                  fill="none" stroke="#00d4ff" stroke-width="1.5" opacity="0.6"/>"""
+              return light_style
+
+          def process(filename, dark=True):
+              if not os.path.exists(filename):
+                  print(f"⚠ Skipping {filename} (not found)")
+                  return
+
+              with open(filename, 'r', encoding='utf-8') as f:
+                  svg = f.read()
+
+              # ── 1. Inject <defs> after opening <svg...> tag ──────────────────
+              svg = re.sub(r'(<svg\b[^>]*>)', r'\1' + GLOW_DEFS, svg, count=1)
+
+              # ── 2. Inject background/border/style right after <svg...> ───────
+              extra = style_dark(svg) if dark else style_light(svg)
+              svg = re.sub(r'(<svg\b[^>]*>\s*<defs>.*?</defs>)',
+                           r'\1' + extra, svg, count=1, flags=re.DOTALL)
+
+              with open(filename, 'w', encoding='utf-8') as f:
+                  f.write(svg)
+              print(f"✅ Styled: {filename}")
+
+          process('dist/github-snake-dark.svg', dark=True)
+          process('dist/github-snake.svg',      dark=False)
+          PYEOF
+
+      # ─── Step 3: Push to output branch ────────────────────────────────────────
+      - name: 🚀 Push styled SVGs to output branch
         uses: crazy-max/ghaction-github-pages@v3.1.0
         with:
           target_branch: output
