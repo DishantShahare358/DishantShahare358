@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 495 210" width="495" height="210" role="img" aria-label="Dishant Shahare GitHub Stats">
+<defs><style><![CDATA[
+text{font-family:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes shineX{0%{transform:translateX(-160px)}60%,100%{transform:translateX(560px)}}
+@keyframes rankGlow{0%,100%{opacity:.8}50%{opacity:1;filter:drop-shadow(0 0 6px rgba(0,212,255,.6))}}
+.stat{opacity:0;animation:fadeUp .5s ease forwards}
+.rk{animation:rankGlow 2.2s ease-in-out infinite}
+.sh{animation:shineX 5s ease-in-out 2s infinite}
+]]></style>
+<linearGradient id="tg2" x1="0" y1="0" x2="1" y2="0">
+  <stop offset="0%"><animate attributeName="stop-color" values="#00d4ff;#3b82f6;#00bcd4;#00d4ff" dur="6s" repeatCount="indefinite"/></stop>
+  <stop offset="100%"><animate attributeName="stop-color" values="#3b82f6;#00bcd4;#00d4ff;#3b82f6" dur="6s" repeatCount="indefinite"/></stop>
+</linearGradient>
+<linearGradient id="ringg" x1="0" y1="0" x2="1" y2="1">
+  <stop offset="0%" stop-color="#00d4ff"/><stop offset="100%" stop-color="#3b82f6"/>
+</linearGradient>
+<linearGradient id="shg2" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#fff" stop-opacity="0"/><stop offset="50%" stop-color="#fff" stop-opacity=".07"/><stop offset="100%" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<clipPath id="tc2"><rect x="0" y="0" width="495" height="210" rx="14"/></clipPath>
+<filter id="glow"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+
+<!-- Background card -->
+<rect x="1" y="1" width="493" height="208" rx="14" fill="#0b1528" stroke="url(#tg2)" stroke-width="1.5"/>
+
+<!-- Title -->
+<text x="20" y="34" font-size="16" font-weight="bold" fill="url(#tg2)">📈 Dishant Shahare's Stats</text>
+
+<!-- Active pulsing dot -->
+<circle cx="470" cy="28" r="8" fill="#00d4ff" opacity=".2" class="rk"/>
+<circle cx="470" cy="28" r="4" fill="#00d4ff" class="rk" style="animation-delay:.4s"/>
+
+<!-- Left column stats (Multi-color values) -->
+<g class="stat" style="animation-delay:0.30s">
+  <text x="20" y="68" font-size="13" fill="#94a3b8">⭐  Total Stars Earned:</text>
+  <text x="280" y="68" font-size="15" font-weight="bold" fill="#fde047">50+</text>
+</g>
+<g class="stat" style="animation-delay:0.55s">
+  <text x="20" y="98" font-size="13" fill="#94a3b8">💻  Total Commits (2025):</text>
+  <text x="280" y="98" font-size="15" font-weight="bold" fill="#4ade80">300+</text>
+</g>
+<g class="stat" style="animation-delay:0.80s">
+  <text x="20" y="128" font-size="13" fill="#94a3b8">🔀  Total PRs:</text>
+  <text x="280" y="128" font-size="15" font-weight="bold" fill="#c084fc">25+</text>
+</g>
+<g class="stat" style="animation-delay:1.05s">
+  <text x="20" y="158" font-size="13" fill="#94a3b8">📦  Total Repos:</text>
+  <text x="280" y="158" font-size="15" font-weight="bold" fill="#38bdf8">15+</text>
+</g>
+
+<!-- Animated Rank Ring Component -->
+<g transform="translate(405, 115)">
+  <circle r="46" fill="none" stroke="#14233c" stroke-width="8"/>
+  <circle r="46" fill="none" stroke="url(#ringg)" stroke-width="8" stroke-linecap="round"
+    stroke-dasharray="226.2 289" stroke-dashoffset="226.2" transform="rotate(-90)">
+    <animate attributeName="stroke-dashoffset" from="226.2" to="0" dur="1.6s" begin=".6s" fill="freeze" calcMode="spline" keySplines=".2 .8 .3 1"/>
+  </circle>
+  <text class="rk" y="13" text-anchor="middle" font-size="38" font-weight="bold" fill="#00d4ff" filter="url(#glow)">A</text>
+  <text y="68" text-anchor="middle" font-size="10" font-weight="bold" fill="#38bdf8" opacity="0" style="animation:fadeUp .5s ease 1.8s forwards">RANK</text>
+</g>
+
+<!-- Progress bar at bottom -->
+<g class="stat" style="animation-delay:1.30s">
+  <rect x="20" y="180" width="455" height="6" rx="3" fill="#14233c"/>
+  <rect x="20" y="180" width="0" height="6" rx="3" fill="url(#tg2)">
+    <animate attributeName="width" from="0" to="340" dur="1.2s" begin="1.50s" fill="freeze" calcMode="spline" keySplines=".2 .8 .3 1"/>
+  </rect>
+  <text x="20" y="198" font-size="9" fill="#94a3b8" opacity=".8">Rank: A (Top 15%)</text>
+</g>
+
+<g clip-path="url(#tc2)"><rect class="sh" x="0" y="0" width="140" height="210" fill="url(#shg2)" transform="skewX(-15)"/></g>
+</svg>

@@ -1,0 +1,234 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 520" width="860" height="520" role="img" aria-label="Dishant Shahare Skills">
+<defs><style><![CDATA[
+text{font-family:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace}
+@keyframes popCell{0%{opacity:0;transform:translateY(16px) scale(.85)}70%{opacity:1;transform:translateY(-3px) scale(1.03)}100%{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes rankGlow{0%,100%{opacity:.75}50%{opacity:1}}
+@keyframes shineX{0%{transform:translateX(-200px) skewX(-15deg)}60%,100%{transform:translateX(960px) skewX(-15deg)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pillFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+.cell{opacity:0;animation:popCell .55s cubic-bezier(.2,.8,.3,1.2) forwards;transform-box:fill-box;transform-origin:center}
+.rk{animation:rankGlow 2.2s ease-in-out infinite}
+.sh{animation:shineX 6s ease-in-out 2s infinite}
+.pill{opacity:0;animation:fadeUp .4s ease forwards}
+.pf{animation:pillFloat 3s ease-in-out infinite}
+]]></style>
+<linearGradient id="tgL" x1="0" y1="0" x2="1" y2="0">
+  <stop offset="0%"><animate attributeName="stop-color" values="#0284c7;#2563eb;#0369a1;#0284c7" dur="6s" repeatCount="indefinite"/></stop>
+  <stop offset="100%"><animate attributeName="stop-color" values="#2563eb;#0369a1;#0284c7;#2563eb" dur="6s" repeatCount="indefinite"/></stop>
+</linearGradient>
+<linearGradient id="shgL" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#fff" stop-opacity="0"/><stop offset="50%" stop-color="#fff" stop-opacity=".3"/><stop offset="100%" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<clipPath id="tcL"><rect x="0" y="0" width="860" height="520" rx="14"/></clipPath>
+</defs>
+
+<!-- Background -->
+<rect x="1" y="1" width="858" height="518" rx="14" fill="#f0f6ff" stroke="url(#tgL)" stroke-width="1.5"/>
+
+<!-- Title -->
+<text x="30" y="38" font-size="18" font-weight="bold" fill="url(#tgL)">🛠️ Skills</text>
+
+<!-- ===== CATEGORY 1: Mobile ===== -->
+<g class="cell" style="animation-delay:0.20s">
+  <rect x="18" y="56" width="140" height="110" rx="10" fill="#dbeafe" stroke="#0284c7" stroke-opacity=".7" stroke-width="1.2"/>
+  <text x="88" y="76" text-anchor="middle" font-size="20">📱</text>
+  <text class="rk" x="88" y="92" text-anchor="middle" font-size="11" font-weight="bold" fill="#0284c7">Mobile</text>
+  <text x="88" y="108" text-anchor="middle" font-size="10" fill="#334155">• Flutter</text>
+  <text x="88" y="123" text-anchor="middle" font-size="10" fill="#334155">• Dart</text>
+  <rect x="30" y="148" width="116" height="3.5" rx="2" fill="#bfdbfe"/>
+  <rect x="30" y="148" width="0" height="3.5" rx="2" fill="#0284c7">
+    <animate attributeName="width" from="0" to="116" dur="1s" begin="0.40s" fill="freeze" calcMode="spline" keySplines=".2 .8 .3 1"/>
+  </rect>
+</g>
+
+<!-- ===== CATEGORY 2: Backend ===== -->
+<g class="cell" style="animation-delay:0.35s">
+  <rect x="174" y="56" width="140" height="110" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-opacity=".7" stroke-width="1.2"/>
+  <text x="244" y="76" text-anchor="middle" font-size="20">⚙️</text>
+  <text class="rk" x="244" y="92" text-anchor="middle" font-size="11" font-weight="bold" fill="#16a34a">Backend</text>
+  <text x="244" y="108" text-anchor="middle" font-size="10" fill="#334155">• Flask</text>
+  <text x="244" y="123" text-anchor="middle" font-size="10" fill="#334155">• Django</text>
+  <rect x="186" y="148" width="116" height="3.5" rx="2" fill="#bbf7d0"/>
+  <rect x="186" y="148" width="0" height="3.5" rx="2" fill="#16a34a">
+    <animate attributeName="width" from="0" to="116" dur="1s" begin="0.55s" fill="freeze" calcMode="spline" keySplines=".2 .8 .3 1"/>
+  </rect>
+</g>
+
+<!-- ===== CATEGORY 3: Languages ===== -->
+<g class="cell" style="animation-delay:0.50s">
+  <rect x="330" y="56" width="152" height="130" rx="10" fill="#fefce8" stroke="#ca8a04" stroke-opacity=".7" stroke-width="1.2"/>
+  <text x="406" y="76" text-anchor="middle" font-size="20">💻</text>
+  <text class="rk" x="406" y="92" text-anchor="middle" font-size="11" font-weight="bold" fill="#ca8a04">Languages</text>
+  <text x="406" y="108" text-anchor="middle" font-size="10" fill="#334155">• Python  • C</text>
+  <text x="406" y="123" text-anchor="middle" font-size="10" fill="#334155">• C++  • SQL</text>
+  <text x="406" y="138" text-anchor="middle" font-size="10" fill="#334155">• JavaScript</text>
+  <rect x="342" y="168" width="130" height="3.5" rx="2" fill="#fef08a"/>
+  <rect x="342" y="168" width="0" height="3.5" rx="2" fill="#ca8a04">
+    <animate attributeName="width" from="0" to="130" dur="1s" begin="0.70s" fill="freeze" calcMode="spline" keySplines=".2 .8 .3 1"/>
+  </rect>
+</g>
+
+<!-- ===== CATEGORY 4: Database ===== -->
+<g class="cell" style="animation-delay:0.65s">
+  <rect x="498" y="56" width="152" height="130" rx="10" fill="#fff7ed" stroke="#ea580c" stroke-opacity=".7" stroke-width="1.2"/>
+  <text x="574" y="76" text-anchor="middle" font-size="20">🗄️</text>
+  <text class="rk" x="574" y="92" text-anchor="middle" font-size="11" font-weight="bold" fill="#ea580c">Database</text>
+  <text x="574" y="108" text-anchor="middle" font-size="10" fill="#334155">• MySQL  • SQLite</text>
+  <text x="574" y="123" text-anchor="middle" font-size="10" fill="#334155">• Supabase</text>
+  <text x="574" y="138" text-anchor="middle" font-size="10" fill="#334155">• JSON</text>
+  <rect x="510" y="168" width="130" height="3.5" rx="2" fill="#fed7aa"/>
+  <rect x="510" y="168" width="0" height="3.5" rx="2" fill="#ea580c">
+    <animate attributeName="width" from="0" to="130" dur="1s" begin="0.85s" fill="freeze" calcMode="spline" keySplines=".2 .8 .3 1"/>
+  </rect>
+</g>
+
+<!-- ===== CATEGORY 5: Tools ===== -->
+<g class="cell" style="animation-delay:0.80s">
+  <rect x="666" y="56" width="176" height="130" rx="10" fill="#faf5ff" stroke="#9333ea" stroke-opacity=".7" stroke-width="1.2"/>
+  <text x="754" y="76" text-anchor="middle" font-size="20">🔧</text>
+  <text class="rk" x="754" y="92" text-anchor="middle" font-size="11" font-weight="bold" fill="#9333ea">Tools</text>
+  <text x="754" y="108" text-anchor="middle" font-size="10" fill="#334155">• Git  • GitHub</text>
+  <text x="754" y="123" text-anchor="middle" font-size="10" fill="#334155">• VS Code  • Figma</text>
+  <text x="754" y="138" text-anchor="middle" font-size="10" fill="#334155">• Android Studio</text>
+  <rect x="678" y="168" width="154" height="3.5" rx="2" fill="#e9d5ff"/>
+  <rect x="678" y="168" width="0" height="3.5" rx="2" fill="#9333ea">
+    <animate attributeName="width" from="0" to="154" dur="1s" begin="1.00s" fill="freeze" calcMode="spline" keySplines=".2 .8 .3 1"/>
+  </rect>
+</g>
+
+<!-- ===== AI SECTION (wide cell) ===== -->
+<g class="cell" style="animation-delay:1.00s">
+  <rect x="18" y="200" width="824" height="130" rx="10" fill="#eff6ff" stroke="url(#tgL)" stroke-opacity=".6" stroke-width="1.2"/>
+  <text x="430" y="222" text-anchor="middle" font-size="16" font-weight="bold" fill="url(#tgL)">🤖 AI &amp; Machine Learning</text>
+  
+  <!-- AI skill pills -->
+  <g class="pill pf" style="animation-delay:1.15s">
+    <rect x="38" y="234" width="96" height="24" rx="12" fill="#fee2e2" stroke="#dc2626" stroke-width="1" stroke-opacity=".8"/>
+    <text x="86" y="250" text-anchor="middle" font-size="10" fill="#dc2626" font-weight="bold">TensorFlow</text>
+  </g>
+  <g class="pill pf" style="animation-delay:1.25s">
+    <rect x="144" y="234" width="82" height="24" rx="12" fill="#dbeafe" stroke="#0284c7" stroke-width="1" stroke-opacity=".8"/>
+    <text x="185" y="250" text-anchor="middle" font-size="10" fill="#0284c7" font-weight="bold">OpenCV</text>
+  </g>
+  <g class="pill pf" style="animation-delay:1.35s">
+    <rect x="236" y="234" width="62" height="24" rx="12" fill="#fefce8" stroke="#ca8a04" stroke-width="1" stroke-opacity=".8"/>
+    <text x="267" y="250" text-anchor="middle" font-size="10" fill="#ca8a04" font-weight="bold">NLP</text>
+  </g>
+  <g class="pill pf" style="animation-delay:1.45s">
+    <rect x="308" y="234" width="72" height="24" rx="12" fill="#e0f2fe" stroke="#0369a1" stroke-width="1" stroke-opacity=".8"/>
+    <text x="344" y="250" text-anchor="middle" font-size="10" fill="#0369a1" font-weight="bold">Pandas</text>
+  </g>
+  <g class="pill pf" style="animation-delay:1.55s">
+    <rect x="390" y="234" width="116" height="24" rx="12" fill="#dcfce7" stroke="#16a34a" stroke-width="1" stroke-opacity=".8"/>
+    <text x="448" y="250" text-anchor="middle" font-size="10" fill="#16a34a" font-weight="bold">Computer Vision</text>
+  </g>
+  <g class="pill pf" style="animation-delay:1.65s">
+    <rect x="516" y="234" width="128" height="24" rx="12" fill="#fff7ed" stroke="#ea580c" stroke-width="1" stroke-opacity=".8"/>
+    <text x="580" y="250" text-anchor="middle" font-size="10" fill="#ea580c" font-weight="bold">Face Recognition</text>
+  </g>
+  <g class="pill pf" style="animation-delay:1.75s">
+    <rect x="654" y="234" width="176" height="24" rx="12" fill="#faf5ff" stroke="#9333ea" stroke-width="1" stroke-opacity=".8"/>
+    <text x="742" y="250" text-anchor="middle" font-size="10" fill="#9333ea" font-weight="bold">Hand Gesture Recognition</text>
+  </g>
+  
+  <!-- Divider -->
+  <line x1="38" y1="270" x2="824" y2="270" stroke="#cbd5e1" stroke-width="1"/>
+  
+  <!-- AI progress bar -->
+  <text x="38" y="292" font-size="11" fill="#64748b">AI Expertise Level</text>
+  <rect x="38" y="300" width="800" height="5" rx="2.5" fill="#bfdbfe"/>
+  <rect x="38" y="300" width="0" height="5" rx="2.5" fill="url(#tgL)">
+    <animate attributeName="width" from="0" to="720" dur="1.5s" begin="1.30s" fill="freeze" calcMode="spline" keySplines=".2 .8 .3 1"/>
+  </rect>
+  <text x="765" y="308" font-size="10" fill="#0284c7" font-weight="bold">90%</text>
+  
+  <text x="38" y="323" font-size="9" fill="#64748b" opacity=".8">ML · CV · NLP · Deep Learning · TensorFlow · OpenCV · Pandas</text>
+</g>
+
+<!-- ===== SKILL TAGS ROW ===== -->
+<g class="cell" style="animation-delay:1.40s">
+  <rect x="18" y="346" width="824" height="54" rx="10" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+  
+  <g class="pill" style="animation-delay:1.50s">
+    <rect x="30" y="358" width="54" height="20" rx="10" fill="rgba(2,132,199,.1)" stroke="#0284c7" stroke-width=".8"/>
+    <text x="57" y="372" text-anchor="middle" font-size="9" fill="#0284c7">Flutter</text>
+  </g>
+  <g class="pill" style="animation-delay:1.55s">
+    <rect x="92" y="358" width="42" height="20" rx="10" fill="rgba(22,163,74,.1)" stroke="#16a34a" stroke-width=".8"/>
+    <text x="113" y="372" text-anchor="middle" font-size="9" fill="#16a34a">Dart</text>
+  </g>
+  <g class="pill" style="animation-delay:1.60s">
+    <rect x="142" y="358" width="56" height="20" rx="10" fill="rgba(202,138,4,.1)" stroke="#ca8a04" stroke-width=".8"/>
+    <text x="170" y="372" text-anchor="middle" font-size="9" fill="#ca8a04">Python</text>
+  </g>
+  <g class="pill" style="animation-delay:1.63s">
+    <rect x="206" y="358" width="34" height="20" rx="10" fill="rgba(3,105,161,.1)" stroke="#0369a1" stroke-width=".8"/>
+    <text x="223" y="372" text-anchor="middle" font-size="9" fill="#0369a1">C</text>
+  </g>
+  <g class="pill" style="animation-delay:1.66s">
+    <rect x="248" y="358" width="38" height="20" rx="10" fill="rgba(147,51,234,.1)" stroke="#9333ea" stroke-width=".8"/>
+    <text x="267" y="372" text-anchor="middle" font-size="9" fill="#9333ea">C++</text>
+  </g>
+  <g class="pill" style="animation-delay:1.69s">
+    <rect x="294" y="358" width="38" height="20" rx="10" fill="rgba(234,88,12,.1)" stroke="#ea580c" stroke-width=".8"/>
+    <text x="313" y="372" text-anchor="middle" font-size="9" fill="#ea580c">SQL</text>
+  </g>
+  <g class="pill" style="animation-delay:1.72s">
+    <rect x="340" y="358" width="80" height="20" rx="10" fill="rgba(2,132,199,.1)" stroke="#0284c7" stroke-width=".8"/>
+    <text x="380" y="372" text-anchor="middle" font-size="9" fill="#0284c7">JavaScript</text>
+  </g>
+  <g class="pill" style="animation-delay:1.75s">
+    <rect x="428" y="358" width="56" height="20" rx="10" fill="rgba(22,163,74,.1)" stroke="#16a34a" stroke-width=".8"/>
+    <text x="456" y="372" text-anchor="middle" font-size="9" fill="#16a34a">MySQL</text>
+  </g>
+  <g class="pill" style="animation-delay:1.77s">
+    <rect x="492" y="358" width="54" height="20" rx="10" fill="rgba(202,138,4,.1)" stroke="#ca8a04" stroke-width=".8"/>
+    <text x="519" y="372" text-anchor="middle" font-size="9" fill="#ca8a04">SQLite</text>
+  </g>
+  <g class="pill" style="animation-delay:1.79s">
+    <rect x="554" y="358" width="68" height="20" rx="10" fill="rgba(2,132,199,.1)" stroke="#0284c7" stroke-width=".8"/>
+    <text x="588" y="372" text-anchor="middle" font-size="9" fill="#0284c7">Supabase</text>
+  </g>
+  <g class="pill" style="animation-delay:1.81s">
+    <rect x="630" y="358" width="38" height="20" rx="10" fill="rgba(147,51,234,.1)" stroke="#9333ea" stroke-width=".8"/>
+    <text x="649" y="372" text-anchor="middle" font-size="9" fill="#9333ea">Git</text>
+  </g>
+  <g class="pill" style="animation-delay:1.83s">
+    <rect x="676" y="358" width="58" height="20" rx="10" fill="rgba(2,132,199,.1)" stroke="#0284c7" stroke-width=".8"/>
+    <text x="705" y="372" text-anchor="middle" font-size="9" fill="#0284c7">GitHub</text>
+  </g>
+  <g class="pill" style="animation-delay:1.85s">
+    <rect x="742" y="358" width="56" height="20" rx="10" fill="rgba(234,88,12,.1)" stroke="#ea580c" stroke-width=".8"/>
+    <text x="770" y="372" text-anchor="middle" font-size="9" fill="#ea580c">Figma</text>
+  </g>
+</g>
+
+<!-- ===== BOTTOM STATS ===== -->
+<g class="cell" style="animation-delay:1.60s">
+  <rect x="18" y="416" width="824" height="86" rx="10" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+  
+  <line x1="172" y1="430" x2="172" y2="488" stroke="#e2e8f0" stroke-width="1"/>
+  <line x1="326" y1="430" x2="326" y2="488" stroke="#e2e8f0" stroke-width="1"/>
+  <line x1="480" y1="430" x2="480" y2="488" stroke="#e2e8f0" stroke-width="1"/>
+  <line x1="634" y1="430" x2="634" y2="488" stroke="#e2e8f0" stroke-width="1"/>
+  <line x1="788" y1="430" x2="788" y2="488" stroke="#e2e8f0" stroke-width="1"/>
+  
+  <text x="95" y="451" text-anchor="middle" font-size="10" fill="#64748b">📱 Mobile Apps</text>
+  <text x="95" y="469" text-anchor="middle" font-size="18" font-weight="bold" fill="#0284c7">5+</text>
+  
+  <text x="249" y="451" text-anchor="middle" font-size="10" fill="#64748b">🤖 AI Projects</text>
+  <text x="249" y="469" text-anchor="middle" font-size="18" font-weight="bold" fill="#16a34a">7+</text>
+  
+  <text x="403" y="451" text-anchor="middle" font-size="10" fill="#64748b">💻 Commits</text>
+  <text x="403" y="469" text-anchor="middle" font-size="18" font-weight="bold" fill="#ca8a04">300+</text>
+  
+  <text x="557" y="451" text-anchor="middle" font-size="10" fill="#64748b">📦 Repos</text>
+  <text x="557" y="469" text-anchor="middle" font-size="18" font-weight="bold" fill="#9333ea">15+</text>
+  
+  <text x="711" y="451" text-anchor="middle" font-size="10" fill="#64748b">⭐ Stars</text>
+  <text x="711" y="469" text-anchor="middle" font-size="18" font-weight="bold" fill="#0284c7">50+</text>
+  
+  <text x="840" y="451" text-anchor="middle" font-size="10" fill="#64748b">🎓 Year</text>
+  <text x="840" y="469" text-anchor="middle" font-size="18" font-weight="bold" fill="#ea580c">2026</text>
+</g>
+
+<g clip-path="url(#tcL)"><rect class="sh" x="0" y="0" width="140" height="520" fill="url(#shgL)"/></g>
+</svg>
