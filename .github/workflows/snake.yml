@@ -33,13 +33,11 @@ jobs:
           PURPLE = '#6c63ff'
           TEAL   = '#00bcd4'
 
-          # snk default colors per mode
           CFG = {
               'dark': {
-                  'snake_old': '#39d353',   # replaced in <style> → CYAN
-                  'bg':        '#0d1117',
-                  'dot_map': [              # replaced in element attrs only
-                      ('#39d353', PURPLE),  # L4 dots
+                  'snake_old': '#39d353',
+                  'bg': '#0d1117',
+                  'other_dots': [        # Non-L4 dot remaps (no collision with snake)
                       ('#26a641', '#4a50a0'),
                       ('#006d32', '#2e3a6e'),
                       ('#0e4429', '#1a2040'),
@@ -48,9 +46,8 @@ jobs:
               },
               'light': {
                   'snake_old': '#216e39',
-                  'bg':        '#f0f6ff',
-                  'dot_map': [
-                      ('#216e39', PURPLE),
+                  'bg': '#f0f6ff',
+                  'other_dots': [
                       ('#30a14e', '#5560c0'),
                       ('#40c463', '#8890e8'),
                       ('#9be9a8', '#c8d8ff'),
@@ -59,31 +56,55 @@ jobs:
               },
           }
 
-          # ── 1. Replace snake color inside <style> with simple str.replace ──────
-          # snk uses fill:COLOR inside @keyframes to show/hide snake segments.
-          # Simple replacement keeps keyframe structure intact → animation works.
-          def fix_style_snake(svg, old_color):
-              def replacer(m):
-                  return m.group(0).replace(old_color, CYAN).replace(
-                      old_color.upper(), CYAN)
-              return re.sub(r'<style\b[^>]*>.*?</style>',
-                            replacer, svg, flags=re.DOTALL | re.IGNORECASE)
+          # ─────────────────────────────────────────────────────────────
+          # Step 1: Replace OLD snake color → CYAN everywhere in the SVG
+          # (covers <style> keyframes AND inline fill attrs on snake rects)
+          # This keeps animation keyframe structure 100% intact.
+          # ─────────────────────────────────────────────────────────────
+          def step1_snake_to_cyan(svg, old):
+              return svg.replace(old, CYAN).replace(old.upper(), CYAN)
 
-          # ── 2. Replace dot colors in element attrs (NOT inside <style>) ─────────
-          def fix_dot_colors(svg, dot_map):
-              style_parts = re.split(r'(<style\b[^>]*>.*?</style>)',
-                                     svg, flags=re.DOTALL)
+          # ─────────────────────────────────────────────────────────────
+          # Step 2: L4 dots now have fill="#00d4ff" (from step 1).
+          # They have NO class= attr (only snake parts have class in snk).
+          # Change classless cyan rects → PURPLE, outside <style> only.
+          # ─────────────────────────────────────────────────────────────
+          def step2_l4_dots_to_purple(svg):
+              def patch(m):
+                  tag = m.group(0)
+                  if 'class=' not in tag and f'fill="{CYAN}"' in tag:
+                      return tag.replace(f'fill="{CYAN}"', f'fill="{PURPLE}"')
+                  return tag
+              parts = re.split(r'(<style\b[^>]*>.*?</style>)',
+                               svg, flags=re.DOTALL)
               out = []
-              for p in style_parts:
+              for p in parts:
                   if p.lower().startswith('<style'):
-                      out.append(p)          # leave CSS untouched
+                      out.append(p)           # never touch CSS
+                  else:
+                      out.append(re.sub(r'<rect\b[^>]*/>', patch,
+                                        p, flags=re.DOTALL))
+              return ''.join(out)
+
+          # ─────────────────────────────────────────────────────────────
+          # Step 3: Remap other dot levels (L1-L3, L0) outside <style>
+          # ─────────────────────────────────────────────────────────────
+          def step3_other_dots(svg, dot_map):
+              parts = re.split(r'(<style\b[^>]*>.*?</style>)',
+                               svg, flags=re.DOTALL)
+              out = []
+              for p in parts:
+                  if p.lower().startswith('<style'):
+                      out.append(p)
                   else:
                       for old, new in dot_map:
                           p = p.replace(old, new).replace(old.upper(), new)
                       out.append(p)
               return ''.join(out)
 
-          # ── 3. Parse viewBox (snk uses y=-10 offset → border must follow) ───────
+          # ─────────────────────────────────────────────────────────────
+          # Step 4: Parse viewBox (snk y offset is usually -10)
+          # ─────────────────────────────────────────────────────────────
           def get_vp(svg):
               m = re.search(r'viewBox\s*=\s*"([^"]+)"', svg)
               if m:
@@ -91,20 +112,21 @@ jobs:
               else:
                   wm = re.search(r'width="(\d+)"', svg)
                   hm = re.search(r'height="(\d+)"', svg)
-                  x, y = 0.0, 0.0
-                  w = float(wm.group(1)) if wm else 830.0
-                  h = float(hm.group(1)) if hm else 200.0
+                  x, y, w, h = 0.0, 0.0, 830.0, 200.0
+                  if wm: w = float(wm.group(1))
+                  if hm: h = float(hm.group(1))
               return x, y, w, h
 
-          # ── 4. Build overlay block (bg + border + accents) ────────────────────
-          def overlay(x, y, w, h, bg):
+          # ─────────────────────────────────────────────────────────────
+          # Step 5: Build overlay (background, filters, border, accents)
+          # ─────────────────────────────────────────────────────────────
+          def make_overlay(x, y, w, h, bg):
               x2, y2 = x+w, y+h
-              cx, cy = x+w/2, y+h/2
-              bx, by = x+1.5, y+1.5
-              bw, bh = w-3, h-3
-              # corner accent positions
-              tl = (x+12, y+12);  tr = (x2-12, y+12)
-              bl = (x+12, y2-12); br = (x2-12, y2-12)
+              cx,  cy = x+w/2, y+h/2
+              bx,  by = x+1.5, y+1.5
+              bw,  bh = w-3,   h-3
+              tl = (x+12,  y+12);   tr = (x2-12, y+12)
+              bl = (x+12,  y2-12);  br = (x2-12, y2-12)
               lx, ly = cx, y2-10
               return f"""
             <defs>
@@ -161,11 +183,11 @@ jobs:
                   fill="none" stroke="{CYAN}" stroke-width="1.8" opacity="0.85"/>
             <circle cx="{tl[0]}" cy="{tl[1]}" r="4" fill="{CYAN}">
               <animate attributeName="opacity" values="1;0.15;1" dur="1.8s" repeatCount="indefinite"/>
-              <animate attributeName="r"       values="4;5.5;4"  dur="1.8s" repeatCount="indefinite"/>
+              <animate attributeName="r" values="4;5.5;4" dur="1.8s" repeatCount="indefinite"/>
             </circle>
             <circle cx="{tr[0]}" cy="{tr[1]}" r="4" fill="{PURPLE}">
               <animate attributeName="opacity" values="0.15;1;0.15" dur="1.8s" repeatCount="indefinite"/>
-              <animate attributeName="r"       values="4;5.5;4"     dur="1.8s" repeatCount="indefinite"/>
+              <animate attributeName="r" values="4;5.5;4" dur="1.8s" repeatCount="indefinite"/>
             </circle>
             <circle cx="{bl[0]}" cy="{bl[1]}" r="4" fill="{PURPLE}">
               <animate attributeName="opacity" values="1;0.15;1" dur="2.4s" repeatCount="indefinite"/>
@@ -181,55 +203,76 @@ jobs:
               ◈ dishantshahare · github contributions ◈
             </text>"""
 
-          # ── 5. Add glow filters to elements ──────────────────────────────────
-          # Snake elements have class="sXX" in snk; dots have no class attr.
-          def add_glows(svg):
+          # ─────────────────────────────────────────────────────────────
+          # Step 6: Attach glow filters — FIXED tag manipulation.
+          # BUG in previous versions: rstrip('/') doesn't strip '/>'
+          # because rstrip stops at '>' first.  Use tag[:-2] instead.
+          # ─────────────────────────────────────────────────────────────
+          def step6_add_glows(svg):
               def patch(m):
                   tag = m.group(0)
                   if 'filter=' in tag:
-                      return tag
-                  # Snake: has a class attribute (snk gives class to snake parts only)
-                  has_class = bool(re.search(r'\bclass=["\']', tag))
-                  # Purple max dots: no class, fill is PURPLE
-                  has_purple = (f'fill="{PURPLE}"' in tag or
-                                f"fill='{PURPLE}'" in tag)
-                  if has_class:
-                      tag = tag.rstrip('/>').rstrip()
-                      tag += ' filter="url(#snake-neon)"/>'
-                  elif has_purple:
-                      tag = tag.rstrip('/>').rstrip()
-                      tag += ' filter="url(#dot-glow)"/>'
-                  return tag
-              return re.sub(r'<(?:rect|circle)\b[^>]*/>', patch,
-                            svg, flags=re.DOTALL)
+                      return tag            # already has filter, skip
 
-          # ── PIPELINE ─────────────────────────────────────────────────────────
+                  has_class  = 'class=' in tag
+                  has_purple = f'fill="{PURPLE}"' in tag
+
+                  if not has_class and not has_purple:
+                      return tag            # not a snake or max-dot element
+
+                  # CORRECT self-closing tag strip: use index, not rstrip
+                  if tag.endswith('/>'):
+                      base = tag[:-2].rstrip()   # remove '/>'
+                  elif tag.endswith('>'):
+                      base = tag[:-1].rstrip()   # remove '>'
+                  else:
+                      return tag
+
+                  if has_class:
+                      return base + ' filter="url(#snake-neon)"/>'
+                  else:
+                      return base + ' filter="url(#dot-glow)"/>'
+
+              # Only process outside <style> blocks (no regex on CSS)
+              parts = re.split(r'(<style\b[^>]*>.*?</style>)',
+                               svg, flags=re.DOTALL)
+              out = []
+              for p in parts:
+                  if p.lower().startswith('<style'):
+                      out.append(p)
+                  else:
+                      out.append(re.sub(r'<(?:rect|circle)\b[^>]*/>', patch,
+                                        p, flags=re.DOTALL))
+              return ''.join(out)
+
+          # ─────────────────────────────────────────────────────────────
+          # Main pipeline
+          # ─────────────────────────────────────────────────────────────
           def process(path, mode):
               if not os.path.exists(path):
                   print(f'  SKIP: {path}'); return
-              c = CFG[mode]
+              c   = CFG[mode]
               svg = open(path, encoding='utf-8').read()
 
-              # Step 1 – fix snake color in <style> (simple replace, no regex on CSS)
-              svg = fix_style_snake(svg, c['snake_old'])
-              # Step 2 – remap dot colors outside <style>
-              svg = fix_dot_colors(svg, c['dot_map'])
-              # Step 3 – get viewBox bounds (critical for correct border position)
+              svg = step1_snake_to_cyan(svg, c['snake_old'])   # snake → cyan everywhere
+              svg = step2_l4_dots_to_purple(svg)               # classless cyan rect → purple
+              svg = step3_other_dots(svg, c['other_dots'])     # L1-L3 dot colors
+
               x, y, w, h = get_vp(svg)
-              print(f'  {path}: viewBox {x},{y} {w}x{h}')
-              # Step 4 – inject overlay after opening <svg> tag
+              print(f'  {path}: vp x={x} y={y} w={w} h={h}')
+
               svg = re.sub(r'(<svg\b[^>]*>)',
-                           r'\1\n' + overlay(x, y, w, h, c['bg']),
+                           r'\1\n' + make_overlay(x, y, w, h, c['bg']),
                            svg, count=1)
-              # Step 5 – attach glow filters
-              svg = add_glows(svg)
+
+              svg = step6_add_glows(svg)
 
               open(path, 'w', encoding='utf-8').write(svg)
               print(f'  OK: {path}')
 
           process('dist/github-snake-dark.svg', 'dark')
           process('dist/github-snake.svg',      'light')
-          print('Done!')
+          print('All done!')
           PYEOF
 
       - name: Push to output branch
