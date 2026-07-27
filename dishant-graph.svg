@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 220" width="900" height="220" role="img" aria-label="Dishant Shahare Contribution Graph">
+<defs><style><![CDATA[
+text{font-family:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes shineX{0%{transform:translateX(-200px) skewX(-12deg)}65%,100%{transform:translateX(980px) skewX(-12deg)}}
+@keyframes drawLine{from{stroke-dashoffset:1200}to{stroke-dashoffset:0}}
+@keyframes fadeArea{from{opacity:0}to{opacity:1}}
+@keyframes dotPop{0%{r:0;opacity:0}80%{r:5;opacity:1}100%{r:3.5;opacity:1}}
+@keyframes titleGlow{0%,100%{opacity:.85}50%{opacity:1}}
+.sh{animation:shineX 5s ease-in-out 2.5s infinite}
+.tl{animation:titleGlow 2.5s ease-in-out infinite}
+]]></style>
+<linearGradient id="bg1" x1="0" y1="0" x2="1" y2="0">
+  <stop offset="0%"><animate attributeName="stop-color" values="#00d4ff;#3b82f6;#00bcd4;#00d4ff" dur="6s" repeatCount="indefinite"/></stop>
+  <stop offset="100%"><animate attributeName="stop-color" values="#3b82f6;#00bcd4;#00d4ff;#3b82f6" dur="6s" repeatCount="indefinite"/></stop>
+</linearGradient>
+<linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0%" stop-color="#6c63ff" stop-opacity="0.55"/>
+  <stop offset="100%" stop-color="#6c63ff" stop-opacity="0.03"/>
+</linearGradient>
+<linearGradient id="shg" x1="0" y1="0" x2="1" y2="0">
+  <stop offset="0%" stop-color="#fff" stop-opacity="0"/>
+  <stop offset="50%" stop-color="#fff" stop-opacity=".06"/>
+  <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+</linearGradient>
+<clipPath id="graphClip"><rect x="60" y="40" width="820" height="140" rx="0"/></clipPath>
+<clipPath id="cardClip"><rect x="0" y="0" width="900" height="220" rx="14"/></clipPath>
+<filter id="glow2"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+
+<!-- Card Background -->
+<rect x="1" y="1" width="898" height="218" rx="14" fill="#0b1528" stroke="url(#bg1)" stroke-width="1.5"/>
+
+<!-- Title -->
+<text class="tl" x="450" y="28" text-anchor="middle" font-size="14" font-weight="bold" fill="url(#bg1)">📈 Contribution Graph 🚀</text>
+
+<!-- Grid lines (horizontal) -->
+<g opacity="0.18" stroke="#4a6fa5" stroke-width="0.8">
+  <line x1="60" y1="55"  x2="880" y2="55"/>
+  <line x1="60" y1="85"  x2="880" y2="85"/>
+  <line x1="60" y1="115" x2="880" y2="115"/>
+  <line x1="60" y1="145" x2="880" y2="145"/>
+  <line x1="60" y1="175" x2="880" y2="175"/>
+</g>
+
+<!-- Y-axis labels -->
+<text x="52" y="58"  text-anchor="end" font-size="9" fill="#4a6fa5">20</text>
+<text x="52" y="88"  text-anchor="end" font-size="9" fill="#4a6fa5">15</text>
+<text x="52" y="118" text-anchor="end" font-size="9" fill="#4a6fa5">10</text>
+<text x="52" y="148" text-anchor="end" font-size="9" fill="#4a6fa5">5</text>
+<text x="52" y="178" text-anchor="end" font-size="9" fill="#4a6fa5">0</text>
+
+<!-- Month labels -->
+<g font-size="10" fill="#64748b">
+  <text x="75"  y="198">Aug</text>
+  <text x="148" y="198">Sep</text>
+  <text x="220" y="198">Oct</text>
+  <text x="292" y="198">Nov</text>
+  <text x="365" y="198">Dec</text>
+  <text x="437" y="198">Jan</text>
+  <text x="510" y="198">Feb</text>
+  <text x="582" y="198">Mar</text>
+  <text x="655" y="198">Apr</text>
+  <text x="727" y="198">May</text>
+  <text x="800" y="198">Jun</text>
+  <text x="854" y="198">Jul</text>
+</g>
+
+<!-- Area Fill (clipped) -->
+<g clip-path="url(#graphClip)">
+  <polygon opacity="0" fill="url(#areaGrad)"
+    points="68,175 105,165 142,158 179,145 216,130 253,118 290,108 327,98 364,88 401,78 438,68 475,75 512,85 549,95 586,108 623,120 660,135 697,148 734,155 771,145 808,132 845,118 880,105 880,175 68,175">
+    <animate attributeName="opacity" from="0" to="1" dur="1.4s" begin="0.5s" fill="freeze"/>
+  </polygon>
+</g>
+
+<!-- Main line (animated draw) -->
+<polyline clip-path="url(#graphClip)"
+  fill="none" stroke="#6c63ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+  stroke-dasharray="1200" stroke-dashoffset="1200"
+  points="68,175 105,165 142,158 179,145 216,130 253,118 290,108 327,98 364,88 401,78 438,68 475,75 512,85 549,95 586,108 623,120 660,135 697,148 734,155 771,145 808,132 845,118 880,105">
+  <animate attributeName="stroke-dashoffset" from="1200" to="0" dur="2s" begin="0.3s" fill="freeze" calcMode="spline" keySplines=".2 .8 .3 1"/>
+</polyline>
+
+<!-- Data Points with glow -->
+<g filter="url(#glow2)">
+  <circle cx="68"  cy="175" r="0" fill="#00d4ff"><animate attributeName="r" from="0" to="3.5" dur="0.3s" begin="0.35s" fill="freeze"/></circle>
+  <circle cx="105" cy="165" r="0" fill="#00d4ff"><animate attributeName="r" from="0" to="3.5" dur="0.3s" begin="0.50s" fill="freeze"/></circle>
+  <circle cx="142" cy="158" r="0" fill="#00d4ff"><animate attributeName="r" from="0" to="3.5" dur="0.3s" begin="0.65s" fill="freeze"/></circle>
+  <circle cx="179" cy="145" r="0" fill="#00d4ff"><animate attributeName="r" from="0" to="3.5" dur="0.3s" begin="0.80s" fill="freeze"/></circle>
+  <circle cx="216" cy="130" r="0" fill="#00d4ff"><animate attributeName="r" from="0" to="3.5" dur="0.3s" begin="0.95s" fill="freeze"/></circle>
+  <circle cx="253" cy="118" r="0" fill="#00d4ff"><animate attributeName="r" from="0" to="3.5" dur="0.3s" begin="1.10s" fill="freeze"/></circle>
+  <circle cx="290" cy="108" r="0" fill="#00d4ff"><animate attributeName="r" from="0" to="3.5" dur="0.3s" begin="1.25s" fill="freeze"/></circle>
+  <circle cx="327" cy="98"  r="0" fill="#00d4ff"><animate attributeName="r" from="0" to="3.5" dur="0.3s" begin="1.40s" fill="freeze"/></circle>
+  <circle cx="364" cy="88"  r="0" fill="#00bcd4"><animate attributeName="r" from="0" to="3.5" dur="0.3s" begin="1.55s" fill="freeze"/></circle>
+  <circle cx="401" cy="78"  r="0" fill="#00bcd4"><animate attributeName="r" from="0" to="3.5" dur="0.3s" begin="1.70s" fill="freeze"/></circle>
+  <circle cx="438" cy="68"  r="0" fill="#00bcd4"><animate attributeName="r" from="0" to="4.5" dur="0.3s" begin="1.85s" fill="freeze"/></circle>
+  <circle cx="475" cy="75"  r="0" fill="#00d4ff"><animate attributeName="r" from="0" to="3.5" dur="0.3s" begin="2.00s" fill="freeze"/></circle>
+  <circle cx="512" cy="85"  r="0" fill="#00d4ff"><animate attributeName="r" from="0" to="3.5" dur="0.3s" begin="2.15s" fill="freeze"/></circle>
+  <circle cx="549" cy="95"  r="0" fill="#00d4ff"><animate attributeName="r" from="0" to="3.5" dur="0.3s" begin="2.30s" fill="freeze"/></circle>
+  <circle cx="586" cy="108" r="0" fill="#00d4ff"><animate attributeName="r" from="0" to="3.5" dur="0.3s" begin="2.45s" fill="freeze"/></circle>
+  <circle cx="623" cy="120" r="0" fill="#6c63ff"><animate attributeName="r" from="0" to="3.5" dur="0.3s" begin="2.60s" fill="freeze"/></circle>
+  <circle cx="660" cy="135" r="0" fill="#6c63ff"><animate attributeName="r" from="0" to="3.5" dur="0.3s" begin="2.75s" fill="freeze"/></circle>
+  <circle cx="697" cy="148" r="0" fill="#6c63ff"><animate attributeName="r" from="0" to="3.5" dur="0.3s" begin="2.90s" fill="freeze"/></circle>
+  <circle cx="734" cy="155" r="0" fill="#6c63ff"><animate attributeName="r" from="0" to="3.5" dur="0.3s" begin="3.05s" fill="freeze"/></circle>
+  <circle cx="771" cy="145" r="0" fill="#00d4ff"><animate attributeName="r" from="0" to="3.5" dur="0.3s" begin="3.20s" fill="freeze"/></circle>
+  <circle cx="808" cy="132" r="0" fill="#00d4ff"><animate attributeName="r" from="0" to="3.5" dur="0.3s" begin="3.35s" fill="freeze"/></circle>
+  <circle cx="845" cy="118" r="0" fill="#00d4ff"><animate attributeName="r" from="0" to="3.5" dur="0.3s" begin="3.50s" fill="freeze"/></circle>
+  <circle cx="880" cy="105" r="0" fill="#00bcd4"><animate attributeName="r" from="0" to="3.5" dur="0.3s" begin="3.65s" fill="freeze"/></circle>
+</g>
+
+<!-- Peak annotation -->
+<g opacity="0" style="animation:fadeUp .5s ease 2.1s forwards">
+  <line x1="438" y1="68" x2="438" y2="50" stroke="#00bcd4" stroke-width="1" stroke-dasharray="3,2"/>
+  <rect x="415" y="38" width="46" height="14" rx="4" fill="#0b1528" stroke="#00bcd4" stroke-width="0.8"/>
+  <text x="438" y="49" text-anchor="middle" font-size="9" fill="#00bcd4" font-weight="bold">Peak 🔥</text>
+</g>
+
+<!-- Shimmer overlay -->
+<g clip-path="url(#cardClip)">
+  <rect class="sh" x="0" y="0" width="160" height="220" fill="url(#shg)"/>
+</g>
+</svg>
