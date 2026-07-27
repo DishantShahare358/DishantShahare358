@@ -16,7 +16,6 @@ jobs:
     timeout-minutes: 15
 
     steps:
-      # ── Step 1: Generate base SVGs (default palettes - reliable) ──────────────
       - name: Generate base snake SVGs
         uses: Platane/snk/svg-only@v3
         with:
@@ -25,275 +24,215 @@ jobs:
             dist/github-snake.svg
             dist/github-snake-dark.svg?palette=github-dark
 
-      # ── Step 2: Apply full neon theme (color + glow + frame) ──────────────────
       - name: Apply custom neon theme
         run: |
           python3 - << 'PYEOF'
           import re, os
 
-          # ══════════════════════════════════════════════════════════════════════
-          # THEME CONSTANTS
-          # ══════════════════════════════════════════════════════════════════════
-          SNAKE_CYAN   = '#00d4ff'
-          PURPLE       = '#6c63ff'
-          TEAL         = '#00bcd4'
-          DARK_BG      = '#0d1117'
-          LIGHT_BG     = '#f0f6ff'
+          CYAN   = '#00d4ff'
+          PURPLE = '#6c63ff'
+          TEAL   = '#00bcd4'
 
-          # Contribution dot remaps (inline fill attrs on <rect> elements)
-          # Light mode (default snk palette)
-          LIGHT_DOT_MAP = [
-              ('#ebedf0', '#e8eeff'),   # L0 empty
-              ('#9be9a8', '#c8d8ff'),   # L1
-              ('#40c463', '#8890e8'),   # L2
-              ('#30a14e', '#5560c0'),   # L3
-              ('#216e39', PURPLE),      # L4  ← dot only; snake fixed via CSS
-          ]
-          # Dark mode (github-dark palette)
-          DARK_DOT_MAP = [
-              ('#161b22', '#0d1117'),   # L0 empty
-              ('#0e4429', '#1a2040'),   # L1
-              ('#006d32', '#2e3a6e'),   # L2
-              ('#26a641', '#4a50a0'),   # L3
-              ('#39d353', PURPLE),      # L4  ← dot only; snake fixed via CSS
-          ]
+          # snk default colors per mode
+          CFG = {
+              'dark': {
+                  'snake_old': '#39d353',   # replaced in <style> → CYAN
+                  'bg':        '#0d1117',
+                  'dot_map': [              # replaced in element attrs only
+                      ('#39d353', PURPLE),  # L4 dots
+                      ('#26a641', '#4a50a0'),
+                      ('#006d32', '#2e3a6e'),
+                      ('#0e4429', '#1a2040'),
+                      ('#161b22', '#0d1117'),
+                  ],
+              },
+              'light': {
+                  'snake_old': '#216e39',
+                  'bg':        '#f0f6ff',
+                  'dot_map': [
+                      ('#216e39', PURPLE),
+                      ('#30a14e', '#5560c0'),
+                      ('#40c463', '#8890e8'),
+                      ('#9be9a8', '#c8d8ff'),
+                      ('#ebedf0', '#e8eeff'),
+                  ],
+              },
+          }
 
-          # ══════════════════════════════════════════════════════════════════════
-          # STEP A – fix snake color INSIDE the <style> CSS block
-          #   snk renders the snake via CSS classes that contain `animation:`.
-          #   Those same classes set fill to the L4 color.  We override fill
-          #   to SNAKE_CYAN in any CSS rule that contains an animation property.
-          # ══════════════════════════════════════════════════════════════════════
-          def fix_snake_css(svg):
-              def patch_rule(m):
-                  rule = m.group(0)
-                  if 'animation' in rule:
-                      if re.search(r'fill\s*:', rule):
-                          rule = re.sub(r'fill\s*:\s*#[0-9a-fA-F]{3,8}',
-                                        f'fill:{SNAKE_CYAN}', rule)
-                      else:
-                          rule = rule.rstrip('}') + f'fill:{SNAKE_CYAN};' + '}'
-                  return rule
+          # ── 1. Replace snake color inside <style> with simple str.replace ──────
+          # snk uses fill:COLOR inside @keyframes to show/hide snake segments.
+          # Simple replacement keeps keyframe structure intact → animation works.
+          def fix_style_snake(svg, old_color):
+              def replacer(m):
+                  return m.group(0).replace(old_color, CYAN).replace(
+                      old_color.upper(), CYAN)
+              return re.sub(r'<style\b[^>]*>.*?</style>',
+                            replacer, svg, flags=re.DOTALL | re.IGNORECASE)
 
-              def patch_style_block(m):
-                  return re.sub(r'\{[^}]*\}', patch_rule, m.group(0))
+          # ── 2. Replace dot colors in element attrs (NOT inside <style>) ─────────
+          def fix_dot_colors(svg, dot_map):
+              style_parts = re.split(r'(<style\b[^>]*>.*?</style>)',
+                                     svg, flags=re.DOTALL)
+              out = []
+              for p in style_parts:
+                  if p.lower().startswith('<style'):
+                      out.append(p)          # leave CSS untouched
+                  else:
+                      for old, new in dot_map:
+                          p = p.replace(old, new).replace(old.upper(), new)
+                      out.append(p)
+              return ''.join(out)
 
-              return re.sub(r'<style[^>]*>.*?</style>',
-                            patch_style_block, svg, flags=re.DOTALL)
-
-          # ══════════════════════════════════════════════════════════════════════
-          # STEP B – remap inline fill attrs on contribution <rect> dots
-          # ══════════════════════════════════════════════════════════════════════
-          def remap_dot_colors(svg, color_map):
-              for old, new in color_map:
-                  svg = re.sub(re.escape(old), new, svg, flags=re.IGNORECASE)
-              return svg
-
-          # ══════════════════════════════════════════════════════════════════════
-          # STEP C – parse viewBox (snk uses viewBox="0 -10 830 210")
-          #   so the visible canvas starts at y=vb_y, NOT y=0.
-          #   All overlay elements MUST use viewBox-relative coordinates.
-          # ══════════════════════════════════════════════════════════════════════
-          def get_viewport(svg):
-              vb = re.search(r'viewBox\s*=\s*"([^"]+)"', svg)
-              if vb:
-                  parts = list(map(float, vb.group(1).split()))
-                  vb_x, vb_y, vb_w, vb_h = parts
+          # ── 3. Parse viewBox (snk uses y=-10 offset → border must follow) ───────
+          def get_vp(svg):
+              m = re.search(r'viewBox\s*=\s*"([^"]+)"', svg)
+              if m:
+                  x, y, w, h = map(float, m.group(1).split())
               else:
-                  vb_x, vb_y = 0.0, 0.0
-                  wm = re.search(r'<svg\b[^>]+width="(\d+(?:\.\d+)?)"', svg)
-                  hm = re.search(r'<svg\b[^>]+height="(\d+(?:\.\d+)?)"', svg)
-                  vb_w = float(wm.group(1)) if wm else 830.0
-                  vb_h = float(hm.group(1)) if hm else 200.0
-              # Visible rect in SVG user units:
-              return dict(x=vb_x, y=vb_y, w=vb_w, h=vb_h,
-                          x2=vb_x+vb_w, y2=vb_y+vb_h)
+                  wm = re.search(r'width="(\d+)"', svg)
+                  hm = re.search(r'height="(\d+)"', svg)
+                  x, y = 0.0, 0.0
+                  w = float(wm.group(1)) if wm else 830.0
+                  h = float(hm.group(1)) if hm else 200.0
+              return x, y, w, h
 
-          # ══════════════════════════════════════════════════════════════════════
-          # STEP D – build SVG overlay (background, filters, border, accents)
-          # ══════════════════════════════════════════════════════════════════════
-          def build_overlay(vp, dark):
-              x,  y  = vp['x'],  vp['y']
-              x2, y2 = vp['x2'], vp['y2']
-              w,  h  = vp['w'],  vp['h']
-              bg     = DARK_BG if dark else LIGHT_BG
-
-              # Corner positions (12px inset from visible edges)
-              TL =  (x+12,  y+12)
-              TR =  (x2-12, y+12)
-              BL =  (x+12,  y2-12)
-              BR =  (x2-12, y2-12)
-
-              # Label centre
-              lx = x + w/2
-              ly = y2 - 10
-
-              # Border inset (1.5px inside visible edge on all sides)
-              bx  = x  + 1.5
-              by  = y  + 1.5
-              bx2 = x2 - 1.5
-              by2 = y2 - 1.5
-              bw  = bx2 - bx
-              bh  = by2 - by
-
+          # ── 4. Build overlay block (bg + border + accents) ────────────────────
+          def overlay(x, y, w, h, bg):
+              x2, y2 = x+w, y+h
+              cx, cy = x+w/2, y+h/2
+              bx, by = x+1.5, y+1.5
+              bw, bh = w-3, h-3
+              # corner accent positions
+              tl = (x+12, y+12);  tr = (x2-12, y+12)
+              bl = (x+12, y2-12); br = (x2-12, y2-12)
+              lx, ly = cx, y2-10
               return f"""
-            <!-- ██ DEFS: glow filters + gradient ████████████████████████████ -->
             <defs>
-              <!-- Neon cyan glow for snake -->
               <filter id="snake-neon" x="-80%" y="-80%" width="260%" height="260%"
                       color-interpolation-filters="sRGB">
                 <feGaussianBlur in="SourceGraphic" stdDeviation="2.5" result="b1"/>
                 <feGaussianBlur in="SourceGraphic" stdDeviation="6"   result="b2"/>
-                <feColorMatrix in="b1" type="matrix"
-                  values="0 0 0 0 0  0.83 0 0 0 0.83  0 0 1 0 1  0 0 0 3.5 0"
-                  result="c1"/>
-                <feColorMatrix in="b2" type="matrix"
-                  values="0 0 0 0 0  0.83 0 0 0 0.83  0 0 1 0 1  0 0 0 1.5 0"
-                  result="c2"/>
+                <feColorMatrix in="b1" type="matrix" result="c1"
+                  values="0 0 0 0 0  .83 0 0 0 .83  0 0 1 0 1  0 0 0 3.5 0"/>
+                <feColorMatrix in="b2" type="matrix" result="c2"
+                  values="0 0 0 0 0  .83 0 0 0 .83  0 0 1 0 1  0 0 0 1.5 0"/>
                 <feMerge>
-                  <feMergeNode in="c2"/>
-                  <feMergeNode in="c1"/>
+                  <feMergeNode in="c2"/><feMergeNode in="c1"/>
                   <feMergeNode in="SourceGraphic"/>
                 </feMerge>
               </filter>
-              <!-- Purple glow for max-contribution dots -->
               <filter id="dot-glow" x="-70%" y="-70%" width="240%" height="240%"
                       color-interpolation-filters="sRGB">
                 <feGaussianBlur in="SourceGraphic" stdDeviation="1.8" result="b"/>
-                <feColorMatrix in="b" type="matrix"
-                  values="0.42 0 0 0 0.27  0.39 0 0 0 0.25  0 0 1 0 1  0 0 0 2 0"
-                  result="cb"/>
+                <feColorMatrix in="b" type="matrix" result="cb"
+                  values=".42 0 0 0 .27  .39 0 0 0 .25  0 0 1 0 1  0 0 0 2 0"/>
                 <feMerge>
-                  <feMergeNode in="cb"/>
-                  <feMergeNode in="SourceGraphic"/>
+                  <feMergeNode in="cb"/><feMergeNode in="SourceGraphic"/>
                 </feMerge>
               </filter>
-              <!-- Animated gradient for border -->
               <linearGradient id="bdr" gradientUnits="userSpaceOnUse"
                   x1="{x}" y1="{y}" x2="{x2}" y2="{y2}">
-                <stop offset="0%"   stop-color="{SNAKE_CYAN}"/>
+                <stop offset="0%"   stop-color="{CYAN}"/>
                 <stop offset="35%"  stop-color="{PURPLE}"/>
                 <stop offset="65%"  stop-color="{TEAL}"/>
-                <stop offset="100%" stop-color="{SNAKE_CYAN}"/>
+                <stop offset="100%" stop-color="{CYAN}"/>
                 <animateTransform attributeName="gradientTransform" type="rotate"
-                  from="0 {x+w/2} {y+h/2}" to="360 {x+w/2} {y+h/2}"
+                  from="0 {cx} {cy}" to="360 {cx} {cy}"
                   dur="6s" repeatCount="indefinite"/>
               </linearGradient>
-              <!-- Scanline pattern -->
               <pattern id="scan" x="0" y="0" width="9999" height="4"
                        patternUnits="userSpaceOnUse">
-                <rect x="0" y="0" width="9999" height="1"
-                      fill="rgba(0,212,255,0.045)"/>
+                <rect x="0" y="0" width="9999" height="1" fill="rgba(0,212,255,0.04)"/>
               </pattern>
             </defs>
-
-            <!-- ██ BACKGROUND + SCANLINES ████████████████████████████████████ -->
-            <rect x="{x}" y="{y}" width="{w}" height="{h}" rx="0" fill="{bg}"/>
-            <rect x="{x}" y="{y}" width="{w}" height="{h}"
-                  fill="url(#scan)" opacity="1"/>
-
-            <!-- ██ BORDER (uses viewBox-relative coords → all 4 sides visible) -->
+            <rect x="{x}" y="{y}" width="{w}" height="{h}" fill="{bg}"/>
+            <rect x="{x}" y="{y}" width="{w}" height="{h}" fill="url(#scan)"/>
             <rect x="{bx}" y="{by}" width="{bw}" height="{bh}"
-                  rx="0" ry="0" fill="none"
-                  stroke="url(#bdr)" stroke-width="2.5" opacity="0.95">
-              <animate attributeName="stroke-dasharray" 
-                values="0 9999;{bw*2+bh*2} 0" dur="0.01s"
-                fill="freeze" repeatCount="1"/>
-            </rect>
-            <!-- Inner accent border -->
+                  fill="none" stroke="url(#bdr)" stroke-width="2.5"/>
             <rect x="{bx+3}" y="{by+3}" width="{bw-6}" height="{bh-6}"
-                  fill="none" stroke="{SNAKE_CYAN}" stroke-width="0.5" opacity="0.2"/>
-
-            <!-- ██ CORNER L-BRACKETS ████████████████████████████████████████ -->
-            <path d="M {TL[0]-6} {TL[1]+6} L {TL[0]-6} {TL[1]-6} L {TL[0]+6} {TL[1]-6}"
-                  fill="none" stroke="{SNAKE_CYAN}" stroke-width="1.8" opacity="0.85"/>
-            <path d="M {TR[0]+6} {TR[1]+6} L {TR[0]+6} {TR[1]-6} L {TR[0]-6} {TR[1]-6}"
-                  fill="none" stroke="{PURPLE}"    stroke-width="1.8" opacity="0.85"/>
-            <path d="M {BL[0]-6} {BL[1]-6} L {BL[0]-6} {BL[1]+6} L {BL[0]+6} {BL[1]+6}"
-                  fill="none" stroke="{PURPLE}"    stroke-width="1.8" opacity="0.85"/>
-            <path d="M {BR[0]+6} {BR[1]-6} L {BR[0]+6} {BR[1]+6} L {BR[0]-6} {BR[1]+6}"
-                  fill="none" stroke="{SNAKE_CYAN}" stroke-width="1.8" opacity="0.85"/>
-
-            <!-- ██ PULSING CORNER DOTS ███████████████████████████████████████ -->
-            <circle cx="{TL[0]}" cy="{TL[1]}" r="4" fill="{SNAKE_CYAN}">
-              <animate attributeName="opacity" values="1;0.15;1"  dur="1.8s" repeatCount="indefinite"/>
-              <animate attributeName="r"       values="4;5.5;4"   dur="1.8s" repeatCount="indefinite"/>
+                  fill="none" stroke="{CYAN}" stroke-width="0.5" opacity="0.2"/>
+            <path d="M {tl[0]-6} {tl[1]+6} L {tl[0]-6} {tl[1]-6} L {tl[0]+6} {tl[1]-6}"
+                  fill="none" stroke="{CYAN}" stroke-width="1.8" opacity="0.85"/>
+            <path d="M {tr[0]+6} {tr[1]+6} L {tr[0]+6} {tr[1]-6} L {tr[0]-6} {tr[1]-6}"
+                  fill="none" stroke="{PURPLE}" stroke-width="1.8" opacity="0.85"/>
+            <path d="M {bl[0]-6} {bl[1]-6} L {bl[0]-6} {bl[1]+6} L {bl[0]+6} {bl[1]+6}"
+                  fill="none" stroke="{PURPLE}" stroke-width="1.8" opacity="0.85"/>
+            <path d="M {br[0]+6} {br[1]-6} L {br[0]+6} {br[1]+6} L {br[0]-6} {br[1]+6}"
+                  fill="none" stroke="{CYAN}" stroke-width="1.8" opacity="0.85"/>
+            <circle cx="{tl[0]}" cy="{tl[1]}" r="4" fill="{CYAN}">
+              <animate attributeName="opacity" values="1;0.15;1" dur="1.8s" repeatCount="indefinite"/>
+              <animate attributeName="r"       values="4;5.5;4"  dur="1.8s" repeatCount="indefinite"/>
             </circle>
-            <circle cx="{TR[0]}" cy="{TR[1]}" r="4" fill="{PURPLE}">
+            <circle cx="{tr[0]}" cy="{tr[1]}" r="4" fill="{PURPLE}">
               <animate attributeName="opacity" values="0.15;1;0.15" dur="1.8s" repeatCount="indefinite"/>
               <animate attributeName="r"       values="4;5.5;4"     dur="1.8s" repeatCount="indefinite"/>
             </circle>
-            <circle cx="{BL[0]}" cy="{BL[1]}" r="4" fill="{PURPLE}">
-              <animate attributeName="opacity" values="1;0.15;1"  dur="2.4s" repeatCount="indefinite"/>
-              <animate attributeName="r"       values="4;5.5;4"   dur="2.4s" repeatCount="indefinite"/>
+            <circle cx="{bl[0]}" cy="{bl[1]}" r="4" fill="{PURPLE}">
+              <animate attributeName="opacity" values="1;0.15;1" dur="2.4s" repeatCount="indefinite"/>
             </circle>
-            <circle cx="{BR[0]}" cy="{BR[1]}" r="4" fill="{SNAKE_CYAN}">
+            <circle cx="{br[0]}" cy="{br[1]}" r="4" fill="{CYAN}">
               <animate attributeName="opacity" values="0.15;1;0.15" dur="2.4s" repeatCount="indefinite"/>
-              <animate attributeName="r"       values="4;5.5;4"     dur="2.4s" repeatCount="indefinite"/>
             </circle>
-
-            <!-- ██ BOTTOM LABEL ███████████████████████████████████████████████ -->
             <rect x="{lx-115}" y="{ly-13}" width="230" height="17"
-                  rx="8" fill="{SNAKE_CYAN}" opacity="0.12"/>
+                  rx="8" fill="{CYAN}" opacity="0.12"/>
             <text x="{lx}" y="{ly+1}" text-anchor="middle"
-                  font-family="'Courier New',Courier,monospace"
-                  font-size="9.5" fill="{SNAKE_CYAN}" opacity="0.8" letter-spacing="1.2">
+                  font-family="'Courier New',Courier,monospace" font-size="9.5"
+                  fill="{CYAN}" opacity="0.8" letter-spacing="1.2">
               ◈ dishantshahare · github contributions ◈
             </text>"""
 
-          # ══════════════════════════════════════════════════════════════════════
-          # STEP E – apply neon-glow filter to snake + dot elements
-          # ══════════════════════════════════════════════════════════════════════
-          def apply_glow_filters(svg):
+          # ── 5. Add glow filters to elements ──────────────────────────────────
+          # Snake elements have class="sXX" in snk; dots have no class attr.
+          def add_glows(svg):
               def patch(m):
                   tag = m.group(0)
-                  if f'fill="{SNAKE_CYAN}"' in tag and 'filter=' not in tag:
-                      tag = tag.rstrip('/>').rstrip() + ' filter="url(#snake-neon)"/>'
-                  elif f'fill="{PURPLE}"' in tag and 'filter=' not in tag:
-                      tag = tag.rstrip('/>').rstrip() + ' filter="url(#dot-glow)"/>'
+                  if 'filter=' in tag:
+                      return tag
+                  # Snake: has a class attribute (snk gives class to snake parts only)
+                  has_class = bool(re.search(r'\bclass=["\']', tag))
+                  # Purple max dots: no class, fill is PURPLE
+                  has_purple = (f'fill="{PURPLE}"' in tag or
+                                f"fill='{PURPLE}'" in tag)
+                  if has_class:
+                      tag = tag.rstrip('/>').rstrip()
+                      tag += ' filter="url(#snake-neon)"/>'
+                  elif has_purple:
+                      tag = tag.rstrip('/>').rstrip()
+                      tag += ' filter="url(#dot-glow)"/>'
                   return tag
-              return re.sub(r'<(?:rect|circle)\b[^>]*/>', patch, svg, flags=re.DOTALL)
+              return re.sub(r'<(?:rect|circle)\b[^>]*/>', patch,
+                            svg, flags=re.DOTALL)
 
-          # ══════════════════════════════════════════════════════════════════════
-          # MAIN PIPELINE
-          # ══════════════════════════════════════════════════════════════════════
-          def process(filename, dark):
-              if not os.path.exists(filename):
-                  print(f'  SKIP: {filename}'); return
+          # ── PIPELINE ─────────────────────────────────────────────────────────
+          def process(path, mode):
+              if not os.path.exists(path):
+                  print(f'  SKIP: {path}'); return
+              c = CFG[mode]
+              svg = open(path, encoding='utf-8').read()
 
-              with open(filename, 'r', encoding='utf-8') as f:
-                  svg = f.read()
+              # Step 1 – fix snake color in <style> (simple replace, no regex on CSS)
+              svg = fix_style_snake(svg, c['snake_old'])
+              # Step 2 – remap dot colors outside <style>
+              svg = fix_dot_colors(svg, c['dot_map'])
+              # Step 3 – get viewBox bounds (critical for correct border position)
+              x, y, w, h = get_vp(svg)
+              print(f'  {path}: viewBox {x},{y} {w}x{h}')
+              # Step 4 – inject overlay after opening <svg> tag
+              svg = re.sub(r'(<svg\b[^>]*>)',
+                           r'\1\n' + overlay(x, y, w, h, c['bg']),
+                           svg, count=1)
+              # Step 5 – attach glow filters
+              svg = add_glows(svg)
 
-              # A: fix snake color in CSS (before dot remap so they don't collide)
-              svg = fix_snake_css(svg)
+              open(path, 'w', encoding='utf-8').write(svg)
+              print(f'  OK: {path}')
 
-              # B: remap dot contribution colors (inline fill attrs)
-              svg = remap_dot_colors(svg, DARK_DOT_MAP if dark else LIGHT_DOT_MAP)
-
-              # C: parse viewBox → get correct visible canvas bounds
-              vp = get_viewport(svg)
-              print(f'  viewBox: x={vp["x"]} y={vp["y"]} w={vp["w"]} h={vp["h"]}')
-
-              # D: inject overlay (defs + bg + border + accents)
-              overlay = build_overlay(vp, dark)
-              svg = re.sub(r'(<svg\b[^>]*>)', r'\1\n' + overlay, svg, count=1)
-
-              # E: apply glow filters to colored elements
-              svg = apply_glow_filters(svg)
-
-              with open(filename, 'w', encoding='utf-8') as f:
-                  f.write(svg)
-              print(f'  OK: {filename}')
-
-          print('--- Dark SVG ---')
-          process('dist/github-snake-dark.svg', dark=True)
-          print('--- Light SVG ---')
-          process('dist/github-snake.svg', dark=False)
+          process('dist/github-snake-dark.svg', 'dark')
+          process('dist/github-snake.svg',      'light')
           print('Done!')
           PYEOF
 
-      # ── Step 3: Push to output branch ─────────────────────────────────────────
-      - name: Push themed SVGs to output branch
+      - name: Push to output branch
         uses: crazy-max/ghaction-github-pages@v3.1.0
         with:
           target_branch: output
