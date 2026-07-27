@@ -61,7 +61,7 @@
   <img src="./dishant-skills.svg" alt="Dishant's Skills" width="100%"/>
 </picture>
 
-### 📊 GitHub Stats &amp; Graphs
+### 📊 GitHub Stats & Graphs
 
 <!-- 🔴 LIVE dynamic stats via GitHub Readme Stats API -->
 <img src="https://github-readme-stats.vercel.app/api?username=DishantShahare358&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=00d4ff&icon_color=6c63ff&text_color=c9d1d9&ring_color=00d4ff&count_private=true" alt="GitHub Stats" height="185"/>
@@ -70,17 +70,17 @@
 <br/><br/>
 
 <!-- 🔥 LIVE streak stats -->
-<img src="https://streak-stats.demolab.com?user=DishantShahare358&theme=tokyonight&hide_border=true&background=0d1117&ring=00d4ff&fire=6c63ff&currStreakLabel=00bcd4" alt="GitHub Streak"/>
+<img src="https://github-readme-streak-stats.herokuapp.com/?user=DishantShahare358&theme=tokyonight&hide_border=true&background=0d1117&ring=00d4ff&fire=6c63ff&currStreakLabel=00bcd4" alt="GitHub Streak"/>
 
 <br/><br/>
 
 <!-- 📈 LIVE Contribution Activity Graph -->
-<img src="https://github-readme-activity-graph.vercel.app/graph?username=DishantShahare358&bg_color=0d1117&color=00d4ff&line=6c63ff&point=00bcd4&area=true&area_color=6c63ff&hide_border=true&custom_title=Contribution%20Graph%20🚀" alt="Contribution graph" width="95%"/>
+<img src="https://github-readme-activity-graph.vercel.app/graph?username=DishantShahare358&bg_color=0d1117&color=00d4ff&line=6c63ff&point=00bcd4&area=true&area_color=6c63ff&hide_border=true&custom_title=Contribution%20Graph%20%F0%9F%9A%80" alt="Contribution graph" width="95%"/>
 
 <br/><br/>
 
 <!-- 🏆 Trophies -->
-<img src="https://github-profile-trophy.vercel.app/?username=DishantShahare358&theme=tokyonight&no-frame=true&no-bg=true&margin-w=6&row=1" alt="Trophies" width="95%"/>
+<img src="https://github-profile-trophy.vercel.app/?username=DishantShahare358&theme=radical&no-frame=true&no-bg=true&margin-w=6&column=7" alt="Trophies" width="100%"/>
 
 <br/><br/>
 
