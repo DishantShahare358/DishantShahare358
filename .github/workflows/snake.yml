@@ -37,21 +37,21 @@ jobs:
               'dark': {
                   'snake_old': '#39d353',
                   'bg': '#0d1117',
-                  'other_dots': [        # Non-L4 dot remaps (no collision with snake)
-                      ('#26a641', '#4a50a0'),
-                      ('#006d32', '#2e3a6e'),
-                      ('#0e4429', '#1a2040'),
-                      ('#161b22', '#0d1117'),
+                  'other_dots': [        # L3→L0: vivid → barely visible gradient
+                      ('#26a641', '#5258d0'),   # L3 – bright indigo
+                      ('#006d32', '#3140a0'),   # L2 – medium blue-purple
+                      ('#0e4429', '#1e2a60'),   # L1 – dark indigo
+                      ('#161b22', '#111828'),   # L0 – barely visible on dark bg
                   ],
               },
               'light': {
                   'snake_old': '#216e39',
                   'bg': '#f0f6ff',
-                  'other_dots': [
-                      ('#30a14e', '#5560c0'),
-                      ('#40c463', '#8890e8'),
-                      ('#9be9a8', '#c8d8ff'),
-                      ('#ebedf0', '#e8eeff'),
+                  'other_dots': [        # L3→L0: rich → barely tinted gradient
+                      ('#30a14e', '#6060c8'),   # L3 – rich purple
+                      ('#40c463', '#8090e5'),   # L2 – medium purple-blue
+                      ('#9be9a8', '#afc4f8'),   # L1 – soft blue
+                      ('#ebedf0', '#dce8ff'),   # L0 – barely tinted
                   ],
               },
           }
