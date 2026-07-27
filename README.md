@@ -63,14 +63,14 @@
 
 ### 📊 GitHub Stats & Graphs
 
-<!-- 🔴 LIVE dynamic stats via GitHub Readme Stats API -->
-<img src="https://github-readme-stats.vercel.app/api?username=DishantShahare358&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=00d4ff&icon_color=6c63ff&text_color=c9d1d9&ring_color=00d4ff&count_private=true" alt="GitHub Stats" height="185"/>
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=DishantShahare358&layout=compact&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=00d4ff&text_color=c9d1d9&langs_count=8" alt="Top Languages" height="185"/>
+<!-- 📊 Custom Stats SVG -->
+<img src="./dishant-stats.svg" alt="GitHub Stats" width="495"/>
+<img src="./dishant-langs.svg" alt="Top Languages" width="420"/>
 
 <br/><br/>
 
-<!-- 🔥 LIVE streak stats -->
-<img src="https://github-readme-streak-stats.herokuapp.com/?user=DishantShahare358&theme=tokyonight&hide_border=true&background=0d1117&ring=00d4ff&fire=6c63ff&currStreakLabel=00bcd4" alt="GitHub Streak"/>
+<!-- 🔥 GitHub Streak -->
+<img src="https://streak-stats.demolab.com/?user=DishantShahare358&theme=tokyonight-duo&hide_border=true&background=0B1528&ring=00d4ff&fire=6c63ff&currStreakLabel=00bcd4&sideLabels=00d4ff&dates=94a3b8" alt="GitHub Streak" width="600"/>
 
 <br/><br/>
 
@@ -79,8 +79,8 @@
 
 <br/><br/>
 
-<!-- 🏆 Trophies -->
-<img src="https://github-profile-trophy.vercel.app/?username=DishantShahare358&theme=radical&no-frame=true&no-bg=true&margin-w=6&column=7" alt="Trophies" width="100%"/>
+<!-- 🏆 Custom Trophies SVG -->
+<img src="./dishant-trophies.svg" alt="Trophies" width="100%"/>
 
 <br/><br/>
 
