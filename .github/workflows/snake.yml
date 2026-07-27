@@ -130,24 +130,24 @@ jobs:
               lx, ly = cx, y2-10
               return f"""
             <defs>
-              <filter id="snake-neon" x="-80%" y="-80%" width="260%" height="260%"
+              <filter id="snake-neon" x="-15%" y="-15%" width="130%" height="130%"
                       color-interpolation-filters="sRGB">
-                <feGaussianBlur in="SourceGraphic" stdDeviation="2.5" result="b1"/>
-                <feGaussianBlur in="SourceGraphic" stdDeviation="6"   result="b2"/>
+                <feGaussianBlur in="SourceGraphic" stdDeviation="0.8" result="b1"/>
+                <feGaussianBlur in="SourceGraphic" stdDeviation="1.8" result="b2"/>
                 <feColorMatrix in="b1" type="matrix" result="c1"
-                  values="0 0 0 0 0  .83 0 0 0 .83  0 0 1 0 1  0 0 0 3.5 0"/>
+                  values="0 0 0 0 0  .83 0 0 0 .83  0 0 1 0 1  0 0 0 1.2 0"/>
                 <feColorMatrix in="b2" type="matrix" result="c2"
-                  values="0 0 0 0 0  .83 0 0 0 .83  0 0 1 0 1  0 0 0 1.5 0"/>
+                  values="0 0 0 0 0  .83 0 0 0 .83  0 0 1 0 1  0 0 0 0.8 0"/>
                 <feMerge>
                   <feMergeNode in="c2"/><feMergeNode in="c1"/>
                   <feMergeNode in="SourceGraphic"/>
                 </feMerge>
               </filter>
-              <filter id="dot-glow" x="-70%" y="-70%" width="240%" height="240%"
+              <filter id="dot-glow" x="-20%" y="-20%" width="140%" height="140%"
                       color-interpolation-filters="sRGB">
-                <feGaussianBlur in="SourceGraphic" stdDeviation="1.8" result="b"/>
+                <feGaussianBlur in="SourceGraphic" stdDeviation="0.8" result="b"/>
                 <feColorMatrix in="b" type="matrix" result="cb"
-                  values=".42 0 0 0 .27  .39 0 0 0 .25  0 0 1 0 1  0 0 0 2 0"/>
+                  values=".42 0 0 0 .27  .39 0 0 0 .25  0 0 1 0 1  0 0 0 1.0 0"/>
                 <feMerge>
                   <feMergeNode in="cb"/><feMergeNode in="SourceGraphic"/>
                 </feMerge>
