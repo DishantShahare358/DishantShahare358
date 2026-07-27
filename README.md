@@ -75,7 +75,7 @@
 <br/><br/>
 
 <!-- 📈 Contribution Activity Graph -->
-<img src="https://github-readme-activity-graph.vercel.app/graph?username=dishantshahare&bg_color=0d1117&color=00d4ff&line=6c63ff&point=00bcd4&area=true&area_color=6c63ff&hide_border=true&custom_title=Contribution%20Graph%20%F0%9F%9A%80" alt="Contribution graph" width="95%"/>
+<img src="./dishant-graph.svg" alt="Contribution graph" width="95%"/>
 
 <br/><br/>
 
